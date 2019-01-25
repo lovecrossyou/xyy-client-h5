@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom'
 import { AppContainer } from 'react-hot-loader'
 import store from './stores'
-import App from './pages'
+import App from './pages'   
 import './assets/css/common.less'
 // requires and returns all modules that match
 const requireAll = requireContext => requireContext.keys().map(requireContext)
