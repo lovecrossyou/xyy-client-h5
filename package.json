@@ -1,7 +1,7 @@
 {
   "name": "react-eleme",
   "version": "1.0.0",
-  "description": "饿了么webapp",
+  "description": "鑫翼优webapp",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.js ",
