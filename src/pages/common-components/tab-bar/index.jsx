@@ -26,8 +26,8 @@ export default (Component) => {
               <h1 className={styles.text}>微淘</h1>
             </div>
             <div className={itemCls('/compass')} onClick={() => handleClick('/compass')}>
-              <SvgIcon className={styles.icon} name="#compass" />
-              <h1 className={styles.text}>发现</h1>
+              <SvgIcon className={styles.icon} name="#shopping-cart" />
+              <h1 className={styles.text}>购物车</h1>
             </div>
             <div className={itemCls('/order')} onClick={() => handleClick('/order')}>
               <SvgIcon className={styles.icon} name="#form" />

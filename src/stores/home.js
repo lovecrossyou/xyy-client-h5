@@ -1,6 +1,6 @@
 import omit from 'lodash.omit'
 import Toast from 'components/toast'
-import {getGeolocation, getEntry, getShopList} from '../api'
+import { getGeolocation, getEntry, getShopList } from '../api'
 
 const UPDATE = 'HOME_UPDATE'
 
@@ -14,7 +14,7 @@ const initState = {
   }, {
     id: '02',
     image_url: 'http://img5.imgtn.bdimg.com/it/u=247879390,977047675&fm=26&gp=0.jpg',
-  },],
+  }],
   entry: [],
   shoplist: [],
   rank_id: undefined,
@@ -41,17 +41,17 @@ export const homeUpdate = (params) => {
 
 export const homeInit = () => {
   return async (dispatch, getState) => {
-    const {init} = getState().home
-    let {locationInfo} = getState().home
+    const { init } = getState().home
+    let { locationInfo } = getState().home
     if (init) return
     try {
       // 定理位置
       if (!locationInfo.latitude && !locationInfo.longitude) {
         const geoInfo = await getGeolocation()
-        dispatch(homeUpdate({locationInfo: geoInfo.data}))
+        dispatch(homeUpdate({ locationInfo: geoInfo.data }))
         locationInfo = geoInfo.data      // eslint-disable-line
       }
-      const location = {...omit(locationInfo, ['address'])}
+      const location = { ...omit(locationInfo, ['address']) }
       // 获取banner entry
       const [entry, list] = await Promise.all([
         getEntry(location),
@@ -71,7 +71,7 @@ export const homeInit = () => {
         rank_id: list.data.meta.rank_id,
         init: true,
       }))
-    } catch ({err}) {
+    } catch ({ err }) {
       Toast.info(err, 3, false)
     }
   }
@@ -80,7 +80,7 @@ export const homeInit = () => {
 export const homeList = (callback) => {
   return async (dispatch, getState) => {
     const {rank_id, locationInfo, shoplist} = getState().home         // eslint-disable-line
-    const location = {...omit(locationInfo, ['address'])}
+    const location = { ...omit(locationInfo, ['address']) }
     try {
       const list = await getShopList({
         ...location,
@@ -96,7 +96,7 @@ export const homeList = (callback) => {
         rank_id: list.data.meta.rank_id,
       }))
       callback && callback()       // eslint-disable-line
-    } catch ({err}) {
+    } catch ({ err }) {
       Toast.info(err, 3, false)
     }
   }
