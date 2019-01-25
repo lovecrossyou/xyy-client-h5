@@ -12,7 +12,6 @@ export default class PlaceOrder extends React.Component {
         <NavBar
           title="下单"
           iconLeft="#back"
-          className={styles.navback}
           leftClick={() => this.props.history.goBack()} />
         <div className={styles.content}>
           <div style={{ height: '10px' }} />
