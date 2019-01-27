@@ -10,6 +10,7 @@ import arrow_right from '../../assets/img/right_arrow.png'
 import address_choose_icon from '../../assets/img/order/address_icon.png'
 import address_people from '../../assets/img/order/address_people.png'
 
+
 export default class PlaceOrder extends React.Component {
   render() {
     return (
@@ -120,4 +121,3 @@ const BottomBar = () => {
     </div>
   )
 }
-

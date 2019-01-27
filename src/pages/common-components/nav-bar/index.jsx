@@ -34,7 +34,6 @@ export default class NavBar extends React.PureComponent {
       rightClick,
       title,
       className,
-      titleStyle,
     } = this.props
     return (
       <div className={cls(styles.nav, className)}>
@@ -45,7 +44,7 @@ export default class NavBar extends React.PureComponent {
             </div>
           ) : null
         }
-        <div className={cls(styles.title, titleStyle)}>{title}</div>
+        <div className={styles.title}>{title}</div>
         {
           iconRight ? (
             <div className={styles.icon} onClick={rightClick}>

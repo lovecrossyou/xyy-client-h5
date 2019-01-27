@@ -84,28 +84,28 @@ export default class Profile extends React.Component {
         <div className={styles.column}>
           <div className={styles.item}>
             {
-              getItemContent('#wallet', styles.blue, balance, '元')
+              getItemContent('#purse', styles.blue, balance, '元')
             }
             <p className={styles.desc}>钱包</p>
           </div>
           <div className={styles.item} onClick={() => changePage('/benefit')}>
             {
-              getItemContent('#conpon', styles.red, gift_amount, '个')
+              getItemContent('#red-packet', styles.red, gift_amount, '个')
             }
-            <p className={styles.desc}>优惠券</p>
+            <p className={styles.desc}>红包</p>
           </div>
           <div className={styles.item}>
             {
-              getItemContent('#jifen', styles.green, brand_member_new, '个')
+              getItemContent('#gold', styles.green, brand_member_new, '个')
             }
-            <p className={styles.desc}>积分</p>
+            <p className={styles.desc}>金币</p>
           </div>
         </div>
 
         <div className={styles.list}>
           <div className={styles.item} onClick={() => changePage('/order')}>
             <div className={styles.icon}>
-              <SvgIcon name="#order" />
+              <SvgIcon name="#drumstick" />
             </div>
             <p className={styles.desc}>我的订单</p>
             <SvgIcon name="#right" className={styles['icon-right']} />
@@ -115,30 +115,9 @@ export default class Profile extends React.Component {
         <div className={styles.list}>
           <div className={styles.item} onClick={() => changePage('/address')}>
             <div className={styles.icon}>
-              <SvgIcon name="#me-address" />
+              <SvgIcon name="#carrot" />
             </div>
             <p className={styles.desc}>我的地址</p>
-            <SvgIcon name="#right" className={styles['icon-right']} />
-          </div>
-        </div>
-
-        <div className={styles.list}>
-          <div className={styles.item} onClick={() => changePage('/address')}>
-            <div className={styles.icon}>
-              <SvgIcon name="#feedback" />
-            </div>
-            <p className={styles.desc}>意见反馈</p>
-            <SvgIcon name="#right" className={styles['icon-right']} />
-          </div>
-        </div>
-
-
-        <div className={styles.list}>
-          <div className={styles.item} onClick={() => changePage('/address')}>
-            <div className={styles.icon}>
-              <SvgIcon name="#more" />
-            </div>
-            <p className={styles.desc}>更多</p>
             <SvgIcon name="#right" className={styles['icon-right']} />
           </div>
         </div>
