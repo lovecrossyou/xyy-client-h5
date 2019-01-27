@@ -17,11 +17,17 @@
   align-items: center;
   justify-content: space-between;
 }
+.display_b{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .column_between{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
 .place-order {
   position: fixed;
   .position-full;
@@ -54,7 +60,12 @@
         .address_choose_item{
           .row_center;
           .address_choose_icon{
-              width: 14px;
+              width: 22px;
+              height: 28px;
+              margin-right: 10px;
+          }
+          .address_people_icon{
+              width: 28px;
               height: 28px;
               margin-right: 10px;
           }
@@ -68,23 +79,180 @@
       }
       // background:rgba(255,255,255,1);
     }
+    .orderInfoItem_action{
+      .row_between;
+      padding: 0 24px;
+      box-sizing: border-box;
+      background-color: white;
+      width: 100%;
+      height: 88px;
+      .orderInfo_item_left{
+        font-size:28px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(51,51,51,1);
+      }
+      .orderInfo_item_right{
+        .row_center;
+        .orderInfo_item_right_value{
+          font-size:28px;
+          font-family:PingFangSC-Regular;
+          font-weight:400;
+          color:rgba(102,102,102,1);
+          margin-right: 10px;
+        }
+        .address_choose_arrow{
+          width: 14px;
+          height: 28px;
+          }
+        }
+    }
     .orderInfo{
       padding: 0 24px;
+      box-sizing: border-box;
       background-color: white;
+
       .orderInfo_h_t{
         width:100%;
         height: 80px;
         text-align: left;
-
-        font-size:14px;
+        font-size:28px;
         font-family:PingFangSC-Regular;
         font-weight:400;
         line-height: 80px;
         color:rgba(102,102,102,1);
       }
       .orderInfo_item{
+        .row_between;
+        padding: 26px 0;
+        box-sizing: border-box;
+        .orderInfo_item_title{
+          font-size:32px;
+          font-family:PingFangSC-Medium;
+          font-weight:500;
+          color:rgba(51,51,51,1);
+          height: 32px;
+          line-height: 32px;
+        }
+        .orderInfo_item_count_c{
+
+          .row_center;
+          .orderInfo_item_count{
+
+            margin-right: 28px;
+            font-size:28px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            height: 32px;
+            line-height: 32px;
+            color:rgba(153,153,153,1);
+          }
+          .orderInfo_item_money{
+            font-size:32px;
+            font-family:PingFangSC-Medium;
+            font-weight:500;
+            height: 32px;
+            line-height: 32px;
+            color:rgba(51,51,51,1);
+          }
+
+        }
 
       }
+      .orderInfo_deliveryFee{
+        .display_b;
+        width: 100%;
+        line-height: 80px;
+        margin-bottom: 10px;
+        .orderInfo_deliveryFee_name{
+          font-size:28px;
+          font-family:PingFangSC-Regular;
+          font-weight:400;
+          color:rgba(102,102,102,1);
+          line-height:80px;
+        }
+        .orderInfo_deliveryFee_m{
+          font-size:32px;
+          font-family:PingFangSC-Medium;
+          font-weight:500;
+          color:rgba(51,51,51,1);
+          line-height: 32px;
+          align-self: flex-end;
+          margin-bottom:15px;
+        }
     }
+    .orderInfo_line{
+      widows: 100%;
+      height:4px;
+      background-color: #989898;
+    }
+    .orderInfo_totoal{
+      .row_center;
+      width: 100%;
+      height: 80px;
+      justify-content: flex-end;
+      .orderInfo_totoal_t{
+        font-size:26px;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(51,51,51,1);
+      }
+      .orderInfo_totoal_m{
+        font-size:36px;
+        font-family:PingFangSC-Medium;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+      }
+
+    }
+    }
+  }
+}
+.orderInfo_item_right_v_style{
+  color: #D19B5C !important;
+}
+.orderInfo_item_left_style{
+  color: #7CA7D2 !important;
+}
+
+.buttom_container{
+  .row_between;
+  position: fixed;
+  width: 100%;
+  height:88px;
+  bottom: 0;
+  background:rgba(255,255,255,1);
+  box-shadow:0px -1px 0px 0px rgba(236,236,236,0.5);
+  .buttom_container_money{
+    .row_center;
+    .buttom_container_m_title{
+      font-size:28px;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(99,99,99,1);
+    }
+    .buttom_container_m_mark{
+      font-size:20px;
+      font-family:PingFangSC-Regular;
+      font-weight:400;
+      color:rgba(226,5,5,1);
+    }
+    .buttom_container_m_value{
+      font-size:34px;
+      font-family:PingFangSC-Medium;
+      font-weight:500;
+      color:rgba(226,5,5,1);
+    }
+  }
+  .buttom_container_pay{
+    width:258px;
+    height:88px;
+    text-align: center;
+    background:rgba(124,167,210,1);
+    font-size:28px;
+    font-family:PingFangSC-Medium;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    line-height:88px;
   }
 }
