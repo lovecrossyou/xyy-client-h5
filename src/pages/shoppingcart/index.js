@@ -35,22 +35,24 @@ const Product = () => {
 }
 
 const Cart = () => {
-  return (<div className={styles.shoppingcart_wrapper}>
-    <div className={styles.shoppingcart_shopInfo_wrapper}>
-      <div className={styles.shoppingcart_shopInfo}>
-        <img src="" alt="" className={styles.shoppingcart_shop_icon} />
-        <div className={styles.shoppingcart_shop_name}>家乐福</div>
+  return (
+    <div className={styles.shoppingcart_wrapper}>
+      <div className={styles.shoppingcart_shopInfo_wrapper}>
+        <div className={styles.shoppingcart_shopInfo}>
+          <img src="" alt="" className={styles.shoppingcart_shop_icon} />
+          <div className={styles.shoppingcart_shop_name}>家乐福</div>
+        </div>
+        <div>
+          <Icon type="right" />
+        </div>
       </div>
-      <div>
-        <Icon type="right" />
-      </div>
-    </div>
 
-    <div className={styles.products}>
-      <Product />
-      <Product />
+      <div className={styles.products}>
+        <Product />
+        <Product />
+      </div>
     </div>
-  </div>);
+  );
 };
 
 @connect(mapStateToPros, mapDispatchToPrps)
