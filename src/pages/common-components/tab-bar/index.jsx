@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import cls from 'classnames'
 import SvgIcon from 'components/icon-svg'
@@ -22,12 +20,12 @@ export default (Component) => {
           <Component {...this.props} />
           <div className={styles['tab-wrapper']}>
             <div className={itemCls('/home')} onClick={() => handleClick('/home')}>
-              <SvgIcon className={cls(styles.icon, styles.scale)} name="#elem" />
-              <h1 className={styles.text}>微淘</h1>
+              <SvgIcon className={cls(styles.icon)} name="#home" />
+              <h1 className={styles.text}>首页</h1>
             </div>
             <div className={itemCls('/compass')} onClick={() => handleClick('/compass')}>
-              <SvgIcon className={styles.icon} name="#compass" />
-              <h1 className={styles.text}>发现</h1>
+              <SvgIcon className={styles.icon} name="#shopping-cart" />
+              <h1 className={styles.text}>购物车</h1>
             </div>
             <div className={itemCls('/order')} onClick={() => handleClick('/order')}>
               <SvgIcon className={styles.icon} name="#form" />

@@ -25,11 +25,13 @@ const mapDispatchToPrps = dispatch => bindActionCreators({ shoppingCartUpdate },
 
 
 const Product = () => {
-  return (<div className={styles.shoppingcart_product_info}>
-    <img className={styles.shoppingcart_product_icon} src="" alt="" />
-    <div className={styles.p_name}>农夫山泉</div>
-    <div className={styles.p_price}>¥ 18.00</div>
-  </div>)
+  return (
+    <div className={styles.shoppingcart_product_info}>
+      <img className={styles.shoppingcart_product_icon} src="" alt="" />
+      <div className={styles.p_name}>农夫山泉</div>
+      <div className={styles.p_price}>¥ 18.00</div>
+    </div>
+  )
 }
 
 const Cart = () => {
