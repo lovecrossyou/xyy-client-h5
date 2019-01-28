@@ -1,3 +1,4 @@
+/* eslint-disable react/sort-comp */
 
 
 import React from 'react'
@@ -32,13 +33,11 @@ export default class ShoppingCart extends React.PureComponent {
     }
     return null
   }
-
   state = {
     modalVisible: false,
     cartIconRect: {},
     balls: [],
   }
-
   componentDidMount() {
     this.state.cartIconRect = this.cartIcon.getBoundingClientRect()
     eventProxy.on('cartBall', (dom) => {

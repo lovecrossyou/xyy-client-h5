@@ -3,6 +3,9 @@
 /* eslint-disable import/first */
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { chooseTicket } from '../../stores/orderConfirm'
 import NavBar from '../common-components/nav-bar'
 import styles from './index.less'
 import cls from 'classnames'
@@ -11,7 +14,18 @@ import address_choose_icon from '../../assets/img/order/address_icon.png'
 import address_people from '../../assets/img/order/address_people.png'
 
 
-export default class PlaceOrder extends React.Component {
+const mapStateToProps = ({ orderConfirm }) => ({
+  info: orderConfirm.info,
+  tickets: orderConfirm.tickets,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  chooseTicket,
+}, dispatch)
+
+// @connect(mapStateToProps, mapDispatchToProps)
+
+class PlaceOrder extends React.Component {
   render() {
     return (
       <div className={styles['place-order']}>
@@ -104,6 +118,7 @@ const AddressChoose = () => {
         </div>
       </div>
       <img src={arrow_right} className={styles.address_choose_arrow} />
+
     </div>
   )
 }
@@ -121,3 +136,4 @@ const BottomBar = () => {
     </div>
   )
 }
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceOrder)

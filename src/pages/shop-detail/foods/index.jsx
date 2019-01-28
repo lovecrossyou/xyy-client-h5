@@ -103,6 +103,7 @@ export default class Foods extends React.PureComponent {
       listenScroll: true,
       scroll: pos => this.handleScroll(pos),
     }
+    console.log(`menu=======${JSON.stringify(menu)}`);
 
     return (
       <div className={styles['food-wrapper']} style={{ display: show ? 'flex' : 'none' }}>

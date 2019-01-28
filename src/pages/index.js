@@ -67,6 +67,7 @@ export default () => (
       <Route path="/address-edit" component={addressEdit} />
       <Route path="/benefit" component={benefit} />
       <Route path="/shoppingcart" component={shoppingcart} />
+
     </Switch>
   </React.Fragment>
 )

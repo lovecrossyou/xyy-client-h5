@@ -79,6 +79,7 @@ export default class ShopDetail extends React.Component {
       history,
       match,
     } = this.props
+    console.log(`info=======${JSON.stringify(info)}`);
     const { tabIndex } = this.state
     const shopImage = getImageUrl(info.image_path)
     const activities = info.activities || []

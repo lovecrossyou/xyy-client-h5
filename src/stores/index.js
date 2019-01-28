@@ -14,6 +14,7 @@ import { compass } from './compass'
 import { restaurant } from './restaurant'
 import { searchShop } from './search-shop'
 import { shoppingCart } from './shopping-cart'
+import { orderConfirm } from './orderConfirm'
 
 const store = createStore(
   combineReducers({
@@ -25,6 +26,7 @@ const store = createStore(
     restaurant,
     searchShop,
     shoppingCart,
+    orderConfirm,
   }),
   applyMiddleware(thunk),
 )
