@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 /*
  * @Author: Jan-superman
  * @Date: 2018-09-27 20:38:37
@@ -56,6 +57,7 @@ const Cart = () => {
 };
 
 @connect(mapStateToPros, mapDispatchToPrps)
+
 export default class ShoppingCart extends PureComponent {
   render() {
     const { cart } = this.props;
