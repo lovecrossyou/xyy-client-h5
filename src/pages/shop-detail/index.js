@@ -96,7 +96,6 @@ export default class ShopDetail extends React.Component {
       scroll: pos => this.handleScroll(pos),
       bounce: false,
     }
-
     const activeCls = i => cls([styles.item, tabIndex === i ? styles.active : null])
     return loading ? <Skeleton /> : (
       <div className={styles.shop}>
