@@ -13,7 +13,7 @@ const UPDATE = 'SHOPPINGCART_UPDATE'
 // }
 
 const initState = {
-  cart: [],
+  cart: [1, 2],
 }
 
 export const shoppingCart = (state = initState, action) => {

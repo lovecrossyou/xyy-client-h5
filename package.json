@@ -65,6 +65,7 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "antd-mobile": "^2.2.8",
     "axios": "^0.18.0",
     "better-scroll": "^1.10.2",
     "classnames": "^2.2.5",

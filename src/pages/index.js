@@ -47,7 +47,7 @@ const addressEdit = asyncLoad(() => import('./address-edit'), <Loading />)
 const searchAddress = asyncLoad(() => import('./address-nearby'), <Loading />)
 const searchShop = asyncLoad(() => import('./search-shop'), <Loading />)
 const benefit = asyncLoad(() => import('./benefit'), <Loading />)
-
+const shoppingcart = asyncLoad(() => import('./shoppingcart'), <Loading />)
 export default () => (
   <React.Fragment>
     <AuthComponent />
@@ -66,6 +66,7 @@ export default () => (
       <Route path="/address" component={address} />
       <Route path="/address-edit" component={addressEdit} />
       <Route path="/benefit" component={benefit} />
+      <Route path="/shoppingcart" component={shoppingcart} />
     </Switch>
   </React.Fragment>
 )
