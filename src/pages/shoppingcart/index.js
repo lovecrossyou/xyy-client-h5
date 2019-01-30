@@ -6,15 +6,16 @@
  * @Last Modified time: 2018-11-07 23:33:55
  */
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { Icon } from 'antd-mobile';
+import SvgIcon from 'components/icon-svg'
 import Scroll from 'components/scroll'
 
 import styles from './index.less';
 import { shoppingCartUpdate } from '../../stores/shopping-cart'
+import NavBar from '../common-components/nav-bar'
 
 const mapStateToPros = ({ shoppingCart }) => {
   return {
@@ -44,7 +45,7 @@ const Cart = () => {
           <div className={styles.shoppingcart_shop_name}>家乐福</div>
         </div>
         <div>
-          <Icon type="right" />
+          <SvgIcon name="#right" className={styles['icon-right']} />
         </div>
       </div>
 
@@ -57,10 +58,9 @@ const Cart = () => {
 };
 
 @connect(mapStateToPros, mapDispatchToPrps)
-
-export default class ShoppingCart extends PureComponent {
+export default class ShoppingCart extends React.Component {
   render() {
-    const { cart } = this.props;
+    const { history, cart } = this.props
 
     const scrollProps = {
       className: styles.scroll,
@@ -71,6 +71,10 @@ export default class ShoppingCart extends PureComponent {
 
     return (
       <div className={styles.shoppingcart}>
+        <NavBar
+          title="购物车"
+          iconLeft="#back"
+          leftClick={() => history.goBack()} />
         <Scroll {...scrollProps}>
           <Cart />
           <Cart />
