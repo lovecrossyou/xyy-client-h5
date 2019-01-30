@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Route } from 'react-router-dom';
 import { chooseTicket } from '../../stores/orderConfirm'
 import NavBar from '../common-components/nav-bar'
 import styles from './index.less'
@@ -12,7 +13,10 @@ import cls from 'classnames'
 import arrow_right from '../../assets/img/right_arrow.png'
 import address_choose_icon from '../../assets/img/order/address_icon.png'
 import address_people from '../../assets/img/order/address_people.png'
+import asyncLoad from 'components/async-loade'
+import Loading from '../../components/loading';
 
+const Tickets = asyncLoad(() => import('./tickets'), <Loading />)
 
 const mapStateToProps = ({ orderConfirm }) => ({
   info: orderConfirm.info,
@@ -27,6 +31,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 class PlaceOrder extends React.Component {
   render() {
+    const { match, history } = this.props;
     return (
       <div className={styles['place-order']}>
         <NavBar
@@ -40,12 +45,23 @@ class PlaceOrder extends React.Component {
           <div style={{ height: '10px' }} />
           <OrderInfo />
           <div style={{ height: '10px' }} />
-          <OrderInfoItem_action name="使用优惠卷" value="-¥20.00" orderInfo_item_left_style={styles.orderInfo_item_left_style} orderInfo_item_right_v_style={styles.orderInfo_item_right_v_style} />
+          <OrderInfoItem_action
+            name="使用优惠卷"
+            value="-¥20.00"
+            orderInfo_item_left_style={styles.orderInfo_item_left_style}
+            orderInfo_item_right_v_style={styles.orderInfo_item_right_v_style}
+            callBack={() => { history.push(`${match.path}/tickets`) }} />
           <OrderInfoItem_action name="支付方式" value="支付宝" />
           <div style={{ height: '10px' }} />
           <OrderInfoItem_action name="备注" value="不要辣" />
         </div>
         <BottomBar />
+        <Route
+          path={`${match.path}/tickets`}
+          component={
+            props => <Tickets {...props} />
+          } />
+
       </div>
     )
   }
@@ -76,11 +92,12 @@ class OrderInfoItem_action extends Component {
       orderInfo_item_right_v_style,
       name,
       value,
+      callBack,
     } = this.props
     return (
       <div className={styles.orderInfoItem_action}>
         <div className={cls(styles.orderInfo_item_left, orderInfo_item_left_style)}> {name} </div>
-        <div className={styles.orderInfo_item_right}>
+        <div className={styles.orderInfo_item_right} onClick={() => callBack && callBack()}>
           <div className={cls(styles.orderInfo_item_right_value, orderInfo_item_right_v_style)}>
             {value}
           </div>
