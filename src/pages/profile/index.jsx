@@ -51,7 +51,7 @@ export default class Profile extends React.Component {
     return (
       <div className={styles.root}>
         <NavBar
-          title="我的"
+          title="我"
           iconLeft="#back"
           leftClick={() => this.props.history.goBack()} />
 
@@ -73,7 +73,7 @@ export default class Profile extends React.Component {
               <SvgIcon name="#iphone" className={styles.icon} />
               <span>
                 {
-                  !isLogin ? '登陆后享受更多特权' : formatPhone(mobile)
+                  !isLogin ? '登陆后可享受更多特权' : formatPhone(mobile)
                 }
               </span>
             </p>

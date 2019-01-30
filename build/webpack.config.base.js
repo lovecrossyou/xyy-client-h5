@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   output: {
     filename: '[name].[hash:8].js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../../yy-server-h5/views/'),
     publicPath: '/'
   },
   resolve: {
