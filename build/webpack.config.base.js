@@ -60,7 +60,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: path.resolve(__dirname, '../dist/static')
+        to: path.resolve(__dirname, '../../yy-server-h5/views/static')
       }
     ])
   ]
