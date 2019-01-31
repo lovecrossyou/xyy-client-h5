@@ -9,7 +9,7 @@ const baseConfig = require('./webpack.config.base')
 const jsonStringify = v => JSON.stringify(v)
 const isDev = process.env.NODE_ENV === 'development'
 const devServer = {
-  host: '0.0.0.0',
+  host: '127.0.0.1',
   port: '8888',
   hot: true,
   historyApiFallback: true,
@@ -19,7 +19,7 @@ const devServer = {
   publicPath: '/',
   proxy: {
     '/api': {
-      target: 'http://localhost:3333',
+      target: 'http://47.94.169.143:3333',
       pathRewrite: {'^/api' : ''},
       changeOrigin: true
     }
