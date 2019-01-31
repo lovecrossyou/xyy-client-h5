@@ -22,6 +22,11 @@ const devServer = {
       target: 'http://47.94.169.143:3333',
       pathRewrite: {'^/api' : ''},
       changeOrigin: true
+    },
+    '/h5': {
+      target: 'http://47.94.209.108:7002',
+      pathRewrite: {'^/h5' : ''},
+      changeOrigin: true
     }
   }
 }

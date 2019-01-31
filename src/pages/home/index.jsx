@@ -116,6 +116,10 @@ export default class Home extends React.Component {
       shoplist,
       init,
     } = this.props
+
+
+    console.log('render banner ', banner)
+    console.log('render init ', init)
     const scrollProps = {
       className: styles.scroll,
       dataSource: shoplist,

@@ -28,14 +28,20 @@ export const getGeolocation = () => {
   })
 }
 export const getEntry = (params) => { return HttpUtils.get('/elm/entry', params) }
-export const getBanner = (params) => { return HttpUtils.get('/elm/banner', params) }
-export const getShopList = (params) => { return HttpUtils.get('/elm/restaurants', params) }
+// export const getBanner = (params) => { return HttpUtils.get('/elm/banner', params) }
+// 首页 轮播图
+export const getBanner = (params) => { return HttpUtils.getH5('/client/banner/list', params) }
+
+// export const getShopList = (params) => { return HttpUtils.get('/elm/restaurants', params) }
+export const getShopList = (params) => { return HttpUtils.getH5('/client/shop/nearShops', params) }
+
 // 通过关键字搜索商家
 export const getShopListByKw = (params) => { return HttpUtils.get('/elm/restaurants_search', params) }
 
 export const getOrderList = (params) => { return HttpUtils.get('/elm/orders', params) }
 export const getOrderSnapshot = (params) => { return HttpUtils.get('/elm/order-snapshot', params) }
 export const getOrderDesc = (params) => { return HttpUtils.get('/elm/order-desc', params) }
+
 
 // 商店
 export const getShopInfo = (params) => { return HttpUtils.get('/elm/restaurant_byid', params) }
