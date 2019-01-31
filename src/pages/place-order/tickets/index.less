@@ -16,12 +16,13 @@
     align-items: center;
 }
 .tickets_container{
-    .position-full;
-    z-index: 2;
+    width: 100%;
+    height: 100%;
     background-color: @fill-body-darken;
       .scroll {
         position: absolute;
         top: @bar-height;
+        bottom: 100px;
         z-index: 1;
         background-color: @fill-body-darken;
       }
@@ -78,13 +79,25 @@
                                }
                            }
                     }
-                    .ticket_choose_icon{
-                        width:24px;
-                        height:24px;
-                        background:rgba(255,255,255,1);
-                        border-radius: 13px;
-                        border:1px solid rgba(124,167,210,1);
+                    .ticket_choose_icon_container{
+
+                        .row_center;
+                        justify-content: flex-end;
+                        width: 80px;
+                        height: 80px;
+                        .ticket_choose_icon{
+                            width:24px;
+                            height:24px;
+                            background:rgba(255,255,255,1);
+                            border-radius: 13px;
+                            border:1px solid rgba(124,167,210,1);
+                        }
+                        .ticket_choose_icon_s{
+                            .ticket_choose_icon;
+                            background:rgba(124,167,210,1);
+                        }
                     }
+
                     .ticket_show_rule{
                         .row_center;
                         position: absolute;
@@ -118,6 +131,26 @@
 
             }
           }
+      }
+      .bottomBtn_c{
+        position: fixed;
+        width:100%;
+        height:100px;
+        background:rgba(255,255,255,1);
+        padding: 12px 24px 16px 24px;
+        box-sizing: border-box;
+        bottom: 0;
+        .bottomBtn{
+            width:100%;
+            background:rgba(124,167,210,1);
+            border-radius:6px;
+            font-size:28px;
+            font-family:PingFangSC-Medium;
+            font-weight:500;
+            color:rgba(255,255,255,1);
+            line-height:72px;
+            text-align: center;
+        }
       }
 }
 .horizontal_line{

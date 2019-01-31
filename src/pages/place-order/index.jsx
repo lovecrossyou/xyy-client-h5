@@ -13,14 +13,19 @@ import cls from 'classnames'
 import arrow_right from '../../assets/img/right_arrow.png'
 import address_choose_icon from '../../assets/img/order/address_icon.png'
 import address_people from '../../assets/img/order/address_people.png'
+import ali_pay_icon from '../../assets/img/platform/ali_pay_icon.png';
+import wechat_pay_icon from '../../assets/img/platform/wechat_pay_icon.png';
 import asyncLoad from 'components/async-loade'
 import Loading from '../../components/loading';
+import Modal from '../../components/modal';
+
 
 const Tickets = asyncLoad(() => import('./tickets'), <Loading />)
 
 const mapStateToProps = ({ orderConfirm }) => ({
   info: orderConfirm.info,
   tickets: orderConfirm.tickets,
+  ticket: orderConfirm.ticket,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -41,13 +46,13 @@ class PlaceOrder extends React.Component {
 
         <div className={styles.content}>
           <div style={{ height: '10px' }} />
-          <AddressChoose />
+          <AddressChoose chooseAddAction={() => history.push('/address')} />
           <div style={{ height: '10px' }} />
           <OrderInfo />
           <div style={{ height: '10px' }} />
           <OrderInfoItem_action
             name="使用优惠卷"
-            value="-¥20.00"
+            value={this.props.ticket.money}
             orderInfo_item_left_style={styles.orderInfo_item_left_style}
             orderInfo_item_right_v_style={styles.orderInfo_item_right_v_style}
             callBack={() => { history.push(`${match.path}/tickets`) }} />
@@ -61,11 +66,58 @@ class PlaceOrder extends React.Component {
           component={
             props => <Tickets {...props} />
           } />
-
+        <PayChooseModal />
       </div>
     )
   }
 }
+const pays = [
+  { name: '微信', icon: wechat_pay_icon },
+  { name: '支付宝', icon: ali_pay_icon },
+]
+class PayChooseModal extends Component {
+  state=({
+    visible: false,
+  })
+
+  modalOpen() {
+    this.setState({
+      visible: true,
+    })
+  }
+  modalCancel() {
+    this.setState({
+      visible: false,
+    })
+  }
+  PayItem(value, index, itemClick) {
+    return (
+      <div key={`#${index}`} className={styles.pay_choose_item} onClick={() => itemClick()}>
+        <div className={styles.pay_name_c}>
+          <img src={value.icon} className={styles.pay_img} />
+          <div className={styles.pay_name}>{value.name}</div>
+        </div>
+        <div className={styles.pay_choose_icon} />
+      </div>
+    )
+  }
+  render() {
+    return (
+      <Modal visible={this.state.visible}>
+        <div className={styles.pay_choose} key="food" onClick={() => this.modalCancel()} >
+          <div className={styles.pay_choose_body}>
+            {
+              pays.map((value, index) => {
+                return this.PayItem(value, index, () => { this.modalCancel() });
+              })
+            }
+          </div>
+        </div>
+      </Modal>
+    )
+  }
+}
+
 const OrderInfo = () => {
   return (
     <div className={styles.orderInfo}>
@@ -120,9 +172,9 @@ const OrderInfoItem = ({ data }) => {
   )
 }
 
-const AddressChoose = () => {
+const AddressChoose = ({ chooseAddAction }) => {
   return (
-    <div className={styles.address_choose}>
+    <div className={styles.address_choose} onClick={() => chooseAddAction()} >
       <div className={styles.address_choose_left}>
         <div className={styles.address_choose_item}>
           <img src={address_choose_icon} className={styles.address_choose_icon} />
