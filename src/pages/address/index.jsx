@@ -1,7 +1,10 @@
+/* eslint-disable react/jsx-no-bind */
 
 
 import React from 'react'
 import { connect } from 'react-redux'
+import qs from 'query-string'
+import { bindActionCreators } from 'redux';
 import Toast from 'components/toast'
 import SvgIcon from 'components/icon-svg'
 import Scroll from 'components/scroll'
@@ -11,12 +14,10 @@ import NoData from '../common-components/no-data'
 import AuthError from '../common-components/auth-err'
 import AddressRow from './address-row'
 import { getAddress } from '../../api'
+import { chooseAddress } from '../../stores/orderConfirm';
 import styles from './index.less'
 
-@connect(({ globalState }) => ({
-  isLogin: globalState.isLogin,
-}))
-export default class Address extends React.Component {
+class Address extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -55,7 +56,15 @@ export default class Address extends React.Component {
       state: val,
     })
   }
-
+  chooseAdd(address) {
+    console.log(address)
+    const query = qs.parse(this.props.location.search) || {}
+    console.log(`query=========${JSON.stringify(query)}`)
+    if (query.choose === '1') {
+      this.props.chooseAddress(address)
+      this.props.history.goBack();
+    }
+  }
   render() {
     const { isLogin } = this.props
     const { list, loading } = this.state
@@ -72,7 +81,11 @@ export default class Address extends React.Component {
               <Scroll dataSource={list} className={styles.scroll}>
                 {
                   list.map(v => (
-                    <AddressRow key={v.id} data={v} handleClick={() => this.goEdit(v)} />
+                    <AddressRow
+                      key={v.id}
+                      data={v}
+                      handleClick={() => this.goEdit(v)}
+                      choose={() => this.chooseAdd(v)} />
                   ))
                 }
               </Scroll>
@@ -89,3 +102,12 @@ export default class Address extends React.Component {
     )
   }
 }
+const mapStateToProps = ({ globalState }) => ({
+  isLogin: globalState.isLogin,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  chooseAddress,
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Address)

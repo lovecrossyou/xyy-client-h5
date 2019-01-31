@@ -2,17 +2,14 @@
 import React from 'react'
 import qs from 'query-string'
 import cls from 'classnames'
-import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getImageUrl } from 'utils/utils'
 import SvgIcon from 'components/icon-svg'
 import VerticalSlide from 'components/vertical-slide'
 import Scroll from 'components/scroll'
-import asyncLoad from 'components/async-loade'
 import { prefixStyle } from 'utils/dom'
 import Badge from '../common-components/badge'
-import Loading from '../common-components/lazy-loading'
 import Foods from './foods'
 import Ratings from './ratings'
 import ShopInfo from './shop'
@@ -23,7 +20,7 @@ import styles from './index.less'
 
 const transform = prefixStyle('transform')
 const filter = prefixStyle('filter')
-const PlaceOrder = asyncLoad(() => import('../place-order'), <Loading />)
+// const PlaceOrder = asyncLoad(() => import('../place-order'), <Loading />)
 
 const mapStateToProps = ({ shop }) => ({
   loading: shop.loading,
@@ -77,9 +74,7 @@ export default class ShopDetail extends React.Component {
       info,
       loading,
       history,
-      match,
     } = this.props
-    console.log(`info=======${JSON.stringify(info)}`);
     const { tabIndex } = this.state
     const shopImage = getImageUrl(info.image_path)
     const activities = info.activities || []
@@ -172,14 +167,8 @@ export default class ShopDetail extends React.Component {
         <div className={styles.footer}>
           <ShoppingCart
             info={info}
-            handleSubmit={() => history.push(`${match.path}/place-order`)} />
+            handleSubmit={() => history.push('/placeOrder')} />
         </div>
-
-        <Route
-          path={`${match.path}/place-order`}
-          component={
-            props => <PlaceOrder {...props} />
-          } />
       </div>
     )
   }

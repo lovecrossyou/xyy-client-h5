@@ -12,7 +12,7 @@ export default class AddressRow extends React.PureComponent {
     return (
       <div className={styles.row}>
         <div className={styles.desc}>
-          <div className={styles.info}>
+          <div className={styles.info} onClick={() => this.props.choose && this.props.choose()}>
             <h1 className={styles.name}>{data.name}</h1>
             <span className={styles.sex}>{sexMap[data.sex]}</span>
             <span className={styles.phone}>{data.phone}</span>

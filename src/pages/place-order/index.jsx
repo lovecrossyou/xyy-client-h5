@@ -5,7 +5,6 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom';
 import { chooseTicket } from '../../stores/orderConfirm'
 import NavBar from '../common-components/nav-bar'
 import styles from './index.less'
@@ -15,38 +14,22 @@ import address_choose_icon from '../../assets/img/order/address_icon.png'
 import address_people from '../../assets/img/order/address_people.png'
 import ali_pay_icon from '../../assets/img/platform/ali_pay_icon.png';
 import wechat_pay_icon from '../../assets/img/platform/wechat_pay_icon.png';
-import asyncLoad from 'components/async-loade'
-import Loading from '../../components/loading';
+// import asyncLoad from 'components/async-loade'
+// import Loading from '../../components/loading';
 import Modal from '../../components/modal';
-
-
-const Tickets = asyncLoad(() => import('./tickets'), <Loading />)
-
-const mapStateToProps = ({ orderConfirm }) => ({
-  info: orderConfirm.info,
-  tickets: orderConfirm.tickets,
-  ticket: orderConfirm.ticket,
-})
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-  chooseTicket,
-}, dispatch)
-
-// @connect(mapStateToProps, mapDispatchToProps)
 
 class PlaceOrder extends React.Component {
   render() {
-    const { match, history } = this.props;
+    const { history } = this.props;
     return (
       <div className={styles['place-order']}>
         <NavBar
           title="下单"
           iconLeft="#back"
           leftClick={() => this.props.history.goBack()} />
-
         <div className={styles.content}>
           <div style={{ height: '10px' }} />
-          <AddressChoose chooseAddAction={() => history.push('/address')} />
+          <AddressChoose data={this.props.address} chooseAddAction={() => history.push('/address?choose=1')} />
           <div style={{ height: '10px' }} />
           <OrderInfo />
           <div style={{ height: '10px' }} />
@@ -55,17 +38,12 @@ class PlaceOrder extends React.Component {
             value={this.props.ticket.money}
             orderInfo_item_left_style={styles.orderInfo_item_left_style}
             orderInfo_item_right_v_style={styles.orderInfo_item_right_v_style}
-            callBack={() => { history.push(`${match.path}/tickets`) }} />
+            callBack={() => history.push('/tickets')} />
           <OrderInfoItem_action name="支付方式" value="支付宝" />
           <div style={{ height: '10px' }} />
           <OrderInfoItem_action name="备注" value="不要辣" />
         </div>
         <BottomBar />
-        <Route
-          path={`${match.path}/tickets`}
-          component={
-            props => <Tickets {...props} />
-          } />
         <PayChooseModal />
       </div>
     )
@@ -172,18 +150,18 @@ const OrderInfoItem = ({ data }) => {
   )
 }
 
-const AddressChoose = ({ chooseAddAction }) => {
+const AddressChoose = ({ data, chooseAddAction }) => {
   return (
     <div className={styles.address_choose} onClick={() => chooseAddAction()} >
       <div className={styles.address_choose_left}>
         <div className={styles.address_choose_item}>
           <img src={address_choose_icon} className={styles.address_choose_icon} />
-          <div className={styles.address_choose_name}>任蕊芳    18301570183</div>
+          <div className={styles.address_choose_name}>{data.name || ''}    {data.phone || ''}</div>
         </div>
         <div style={{ height: 20 }} />
         <div className={styles.address_choose_item}>
           <img src={address_people} className={styles.address_people_icon} />
-          <div className={styles.address_choose_name}>北京市朝阳区安贞门胜古北里20号楼</div>
+          <div className={styles.address_choose_name}>{data.address}</div>
         </div>
       </div>
       <img src={arrow_right} className={styles.address_choose_arrow} />
@@ -205,4 +183,15 @@ const BottomBar = () => {
     </div>
   )
 }
+const mapStateToProps = ({ orderConfirm }) => ({
+  info: orderConfirm.info,
+  tickets: orderConfirm.tickets,
+  ticket: orderConfirm.ticket,
+  address: orderConfirm.address,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  chooseTicket,
+}, dispatch)
+
 export default connect(mapStateToProps, mapDispatchToProps)(PlaceOrder)

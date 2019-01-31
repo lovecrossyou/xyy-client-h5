@@ -2,6 +2,7 @@
 const CHOOSETICKET = 'CHOOSETICKET'
 const GETCHOOSELIST = 'GETCHOOSELIST'
 const ticketClick = 'ticketClick'
+const CHOOSEADDRESS = 'chooseAddress_order'
 
 const mytickets = [{ name: '新人首单立减', money: 20 },
   { name: '新人首单立减', money: 30 },
@@ -14,6 +15,7 @@ const initState = {
   tickets: [],
   ticketChooseIndex: -1,
   ticket: {},
+  address: {},
 }
 
 
@@ -33,6 +35,11 @@ export const orderConfirm = (state = initState, action) => {
       return {
         ...state,
         ticketChooseIndex: action.payload,
+      }
+    case CHOOSEADDRESS:
+      return {
+        ...state,
+        address: action.payload,
       }
     default:
       return state
@@ -54,5 +61,11 @@ export const ticketClickAction = (chooseIndex) => {
   return {
     payload: chooseIndex,
     type: ticketClick,
+  }
+}
+export const chooseAddress = (params) => {
+  return {
+    payload: params,
+    type: CHOOSEADDRESS,
   }
 }

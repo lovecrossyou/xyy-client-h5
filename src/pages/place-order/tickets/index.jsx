@@ -27,13 +27,15 @@ class Tickets extends Component {
     return (
       <div className={styles.tickets_container}>
         <NavBar
-          className={styles.nav}
           title="选择优惠券"
           iconLeft="#back"
           leftClick={() => this.props.history.goBack()} />
         <Scroll {...scrollProps}>
           {
-            tickets.map((v, i) => <Ticket key={`#${i}`} isChoose={i === this.props.chooseIndex} chooseAction={() => { this.props.ticketClickAction(i) }} />)
+            tickets.map((v, i) => (<Ticket
+              key={`#${i}`}
+              isChoose={i === this.props.chooseIndex}
+              chooseAction={() => { this.props.ticketClickAction(i) }} />))
           }
         </Scroll>
         <BottomSaveBtn ticketChoose={() => {
@@ -65,11 +67,16 @@ class Ticket extends Component {
                 </div>
               </div>
               <div className={styles.ticket_choose_icon_container} onClick={() => chooseAction()}>
-                <div className={isChoose ? styles.ticket_choose_icon_s : styles.ticket_choose_icon} />
+                <div
+                  className={isChoose ? styles.ticket_choose_icon_s : styles.ticket_choose_icon} />
               </div>
-              <div className={styles.ticket_show_rule} onClick={() => this.setState({ isShow: !this.state.isShow })}>
+              <div
+                className={styles.ticket_show_rule}
+                onClick={() => this.setState({ isShow: !this.state.isShow })}>
                 <div className={styles.ticket_rule_btn}>使用规则</div>
-                <img src={this.state.isShow ? arrow_ticket_up : arrow_ticket_down} className={styles.ticket_rule_icon} />
+                <img
+                  rc={this.state.isShow ? arrow_ticket_up : arrow_ticket_down}
+                  className={styles.ticket_rule_icon} />
               </div>
             </div>
             {
