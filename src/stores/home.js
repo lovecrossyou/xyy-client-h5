@@ -65,7 +65,7 @@ export const homeInit = () => {
       console.log('list ', list)
       dispatch(homeUpdate({
         banner: banner || [],
-        shoplist: [] || list,
+        shoplist: list.content,
         init: true,
       }))
     } catch (e) {
@@ -86,7 +86,7 @@ export const homeList = (callback) => {
         pageSize: 8,
       })
       dispatch(homeUpdate({
-        shoplist: [...shoplist, ...list.data.content],
+        shoplist: [...shoplist, ...list.content],
       }))
       callback && callback()       // eslint-disable-line
     } catch ({ err }) {
