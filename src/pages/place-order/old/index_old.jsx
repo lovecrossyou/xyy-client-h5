@@ -10,6 +10,8 @@ import NavBar from '../common-components/nav-bar'
 import styles from './index.less'
 import cls from 'classnames'
 import arrow_right from '../../assets/img/right_arrow.png'
+import address_choose_icon from '../../assets/img/order/address_icon.png'
+import address_people from '../../assets/img/order/address_people.png'
 import ali_pay_icon from '../../assets/img/platform/ali_pay_icon.png';
 import wechat_pay_icon from '../../assets/img/platform/wechat_pay_icon.png';
 // import asyncLoad from 'components/async-loade'
@@ -26,35 +28,26 @@ class PlaceOrder extends React.Component {
           iconLeft="#back"
           leftClick={() => this.props.history.goBack()} />
         <div className={styles.content}>
+          <div style={{ height: '10px' }} />
           <AddressChoose data={this.props.address} chooseAddAction={() => history.push('/address?choose=1')} />
-          <ArriveAndPay title="送达时间" value="尽快送达(15:10送达)" />
-          <ArriveAndPay title="支付方式" value="在线支付" />
-          <WaterStoreInfo />
-          <div className={styles.bottom_white}>
-            <OrderInfoItem_action
-              name="使用优惠卷"
-              value={this.props.ticket.money}
-              orderInfo_item_left_style={styles.orderInfo_item_left_style}
-              orderInfo_item_right_v_style={styles.orderInfo_item_right_v_style}
-              callBack={() => history.push('/tickets')} />
-            <OrderInfoItem_action name="支付方式" value="支付宝" />
-            <div style={{ height: '40px' }} />
-            <OrderInfoItem_action name="订单备注" value="下班之后配送" />
-          </div>
+          <div style={{ height: '10px' }} />
+          <OrderInfo />
+          <div style={{ height: '10px' }} />
+          <OrderInfoItem_action
+            name="使用优惠卷"
+            value={this.props.ticket.money}
+            orderInfo_item_left_style={styles.orderInfo_item_left_style}
+            orderInfo_item_right_v_style={styles.orderInfo_item_right_v_style}
+            callBack={() => history.push('/tickets')} />
+          <OrderInfoItem_action name="支付方式" value="支付宝" />
+          <div style={{ height: '10px' }} />
+          <OrderInfoItem_action name="备注" value="不要辣" />
         </div>
         <BottomBar />
         <PayChooseModal />
       </div>
     )
   }
-}
-const ArriveAndPay = ({ title, value }) => {
-  return (
-    <div className={styles.arrive_pay_c}>
-      <div className={styles.arrive_pay_c_title}>{title}</div>
-      <div className={styles.arrive_pay_c_value}>{value}</div>
-    </div>
-  )
 }
 const pays = [
   { name: '微信', icon: wechat_pay_icon },
@@ -102,29 +95,22 @@ class PayChooseModal extends Component {
     )
   }
 }
-const WaterStoreInfos = [
-  {
-    title: '农夫山泉', count: '2', money: '15', img: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=153185588,3077905438&fm=27&gp=0.jpg',
-  },
-  {
-    title: '乐百氏', count: '2', money: '12', img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2044731858,1878235851&fm=27&gp=0.jpg',
-  },
-  {
-    title: '哇哈哈', count: '2', money: '16', img: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2447413415,3983146968&fm=179&app=42&f=JPEG?w=242&h=242',
-  },
-  {
-    title: '怡宝', count: '1', money: '10', img: 'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=1316944245,1173320322&fm=85&s=49A01D724303614B1EF5E1CF0300C0A2',
-  },
-];
-const WaterStoreInfo = () => {
+
+const OrderInfo = () => {
   return (
-    <div className={styles.water_store_info}>
-      <div className={styles.water_store_h_t}>水站信息</div>
-      {
-        WaterStoreInfos.map((value, index) => {
-          return <WaterStoreItem data={value} key={index} />
-        })
-      }
+    <div className={styles.orderInfo}>
+      <div className={styles.orderInfo_h_t}>订单信息</div>
+      <OrderInfoItem data={{ title: '农夫山泉', count: '2', money: '20' }} />
+      <OrderInfoItem data={{ title: '易宝箱装', count: '1', money: '60' }} />
+      <div className={styles.orderInfo_deliveryFee}>
+        <div className={styles.orderInfo_deliveryFee_name}>配送费</div>
+        <div className={styles.orderInfo_deliveryFee_m}>{'¥ ' + '5'}</div>
+      </div>
+      <div className={styles.orderInfo_line} />
+      <div className={styles.orderInfo_totoal}>
+        <div className={styles.orderInfo_totoal_t}>合计：</div>
+        <div className={styles.orderInfo_totoal_m}>¥ 80.00</div>
+      </div>
     </div>
   )
 }
@@ -152,16 +138,13 @@ class OrderInfoItem_action extends Component {
   }
 }
 
-const WaterStoreItem = ({ data }) => {
+const OrderInfoItem = ({ data }) => {
   return (
-    <div className={styles.water_store_item}>
-      <div className={styles.water_store_item_title_c}>
-        <img className={styles.water_store_item_img} src={data.img} />
-        <div className={styles.water_store_item_title}>{data.title}</div>
-      </div>
-      <div className={styles.water_store_item_count_c}>
-        <div className={styles.water_store_item_count}>{ `x${data.count}`}</div>
-        <div className={styles.water_store_item_money}>{`¥ ${data.money}`}</div>
+    <div className={styles.orderInfo_item}>
+      <div className={styles.orderInfo_item_title}>{data.title}</div>
+      <div className={styles.orderInfo_item_count_c}>
+        <div className={styles.orderInfo_item_count}>{ `x${data.count}`}</div>
+        <div className={styles.orderInfo_item_money}>{`¥ ${data.money}`}</div>
       </div>
     </div>
   )
@@ -171,14 +154,14 @@ const AddressChoose = ({ data, chooseAddAction }) => {
   return (
     <div className={styles.address_choose} onClick={() => chooseAddAction()} >
       <div className={styles.address_choose_left}>
-        <div className={styles.address_choose_mark_c}>
-          <div className={styles.address_choose_mark_t}>订单配送至</div>
-          <div className={styles.address_choose_mark}>公司</div>
+        <div className={styles.address_choose_item}>
+          <img src={address_choose_icon} className={styles.address_choose_icon} />
+          <div className={styles.address_choose_name}>{data.name || ''}    {data.phone || ''}</div>
         </div>
-        <div className={styles.address_choose_detail}>{data.address}{data.address_detail}</div>
-        <div className={styles.address_people}>
-          <div className={styles.address_p_name}>{data.name || ''}</div>
-          <div className={styles.address_p_phone}>{data.phone || ''}</div>
+        <div style={{ height: 20 }} />
+        <div className={styles.address_choose_item}>
+          <img src={address_people} className={styles.address_people_icon} />
+          <div className={styles.address_choose_name}>{data.address}</div>
         </div>
       </div>
       <img src={arrow_right} className={styles.address_choose_arrow} />
