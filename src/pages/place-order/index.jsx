@@ -34,12 +34,14 @@ class PlaceOrder extends React.Component {
             <OrderInfoItem_action
               name="使用优惠卷"
               value={this.props.ticket.money}
-              orderInfo_item_left_style={styles.orderInfo_item_left_style}
-              orderInfo_item_right_v_style={styles.orderInfo_item_right_v_style}
               callBack={() => history.push('/tickets')} />
-            <OrderInfoItem_action name="支付方式" value="支付宝" />
-            <div style={{ height: '40px' }} />
-            <OrderInfoItem_action name="订单备注" value="下班之后配送" />
+            <OrderInfoItem_action name="立减优惠" value="-¥6" hideArrow={true} orderInfo_item_right_v_style={styles.orderInfo_color_red} />
+            <div style={{ height: '30px' }} />
+            <OrderInfoItem_action
+              name="订单备注"
+              value="下班之后配送"
+              orderInfo_item_right_v_style={styles.orderInfo_color_gray9}
+              orderInfo_item_left_style={styles.orderInfo_color_gray2e} />
           </div>
         </div>
         <BottomBar />
@@ -137,6 +139,7 @@ class OrderInfoItem_action extends Component {
       name,
       value,
       callBack,
+      hideArrow,
     } = this.props
     return (
       <div className={styles.orderInfoItem_action}>
@@ -145,7 +148,9 @@ class OrderInfoItem_action extends Component {
           <div className={cls(styles.orderInfo_item_right_value, orderInfo_item_right_v_style)}>
             {value}
           </div>
-          <img className={styles.address_choose_arrow} src={arrow_right} />
+          {
+            hideArrow ? null : <img className={styles.address_choose_arrow} src={arrow_right} />
+          }
         </div>
       </div>
     )
@@ -195,6 +200,7 @@ const BottomBar = () => {
         <div className={styles.buttom_container_m_value}>
           { '20.00' }
         </div>
+        <div className={styles.buttom_container_m_ex}>已优惠¥6</div>
       </div>
       <div className={styles.buttom_container_pay}>去支付</div>
     </div>
