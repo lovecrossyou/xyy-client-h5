@@ -119,7 +119,7 @@ export default class Home extends React.Component {
 
 
     console.log('render banner ', banner)
-    console.log('render init ', init)
+    console.log('render shoplist ', shoplist)
     const scrollProps = {
       className: styles.scroll,
       dataSource: shoplist,
@@ -140,7 +140,7 @@ export default class Home extends React.Component {
               <Slide>
                 {
                   banner.map(v => (
-                    <img key={v.id} src={v.image_url} alt="" />
+                    <img key={v.id} src={v.image} alt="" />
                   ))
                 }
               </Slide>
