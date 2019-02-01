@@ -1,7 +1,7 @@
 import omit from 'lodash.omit'
 import Toast from 'components/toast'
 // eslint-disable-next-line no-unused-vars
-import { getBanner, getShopList } from '../api'
+import { getGeolocation, getBanner, getShopList } from '../api'
 
 const UPDATE = 'HOME_UPDATE'
 
@@ -37,21 +37,21 @@ export const homeUpdate = (params) => {
 export const homeInit = () => {
   return async (dispatch, getState) => {
     const { init } = getState().home
-    // const { locationInfo } = getState().home
+    let { locationInfo } = getState().home
     if (init) return
     try {
       // 定理位置
-      // if (!locationInfo.latitude && !locationInfo.longitude) {
-      //   const geoInfo = await getGeolocation()
-      //   dispatch(homeUpdate({ locationInfo: geoInfo.data }))
-      //   locationInfo = geoInfo.data      // eslint-disable-line
-      // }
-      // const location = { ...omit(locationInfo, ['address']) }
-
-      const location = {
-        latitude: 20.111111,
-        longitude: 113.09091,
+      if (!locationInfo.latitude && !locationInfo.longitude) {
+        const geoInfo = await getGeolocation()
+        dispatch(homeUpdate({ locationInfo: geoInfo.data }))
+        locationInfo = geoInfo.data      // eslint-disable-line
       }
+      const location = { ...omit(locationInfo, ['address']) }
+
+      // const location = {
+      //   latitude: 20.111111,
+      //   longitude: 113.09091,
+      // }
       // 获取banner entry
       const [banner, list] = await Promise.all([
         getBanner(location),
