@@ -83,6 +83,7 @@ export default class Order extends React.PureComponent {
           isLogin ? (
             <Scroll {...scrollProps} ref={c => this.scroll = c}>
               {
+                // this.rowClick(v.unique_id)
                 init ? orderList.map(v => (
                   <OrderRow key={v.id} data={v} handleClick={() => this.rowClick(v.unique_id)} />
                 )) : Array.from({ length: 10 }, (v, i) => i).map(v => (
