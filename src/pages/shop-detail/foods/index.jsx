@@ -3,6 +3,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import numeral from 'numeral'
 import { getImageUrl } from 'utils/utils'
 import Scroll from 'components/scroll'
 import Modal from 'components/modal'
@@ -137,7 +138,7 @@ export default class Foods extends React.PureComponent {
                               </p>
                               <div className={styles['sales-info']}>
                                 <span className={styles.price}>
-                                  {f.price}
+                                  {numeral(f.price).format('0.00')}
                                   {/* {this.getFoodPrice(f.specfoods)} */}
                                 </span>
                                 <Stepper food={f} />
