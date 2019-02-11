@@ -59,9 +59,15 @@ export const shopInit = () => {
         //   extras: ['activities', 'albums', 'license', 'identification', 'qualification'],
         // }),
         getShopInfo({
-          id: restaurant_id,
+          id: 13,
         }),
         // getShopFood({ restaurant_id }),
+        // getShopRatings({
+        //   shopId: restaurant_id,
+        //   has_content: true,
+        //   page: 0,
+        //   pageSize: 8,
+        // }),
         getShopRatings({
           restaurant_id,
           has_content: true,
