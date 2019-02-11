@@ -17,27 +17,27 @@ import styles from './index.less'
 export default class Stepper extends React.PureComponent {
   increment = ({ target }) => {
     const { food, cart, dropBall = true } = this.props
-    const specs = null
-    const isHas = cart.find(v => v.virtual_food_id === food.virtual_food_id)
-    if (!isHas && specs) {
+    console.log('increment food ', food)
+    const isHas = cart.find(v => v.id === food.id)
+
+    console.log('isHas ', isHas)
+    if (!isHas) {
       this.props.shoppingCartUpdate({
         cart: [
           ...cart,
           {
             attrs: [],
             quantity: 1,
-            restaurant_id: food.restaurant_id,
-            price: specs.price,
-            new_specs: specs.specs,
-            name: specs.name,
-            food_id: specs.food_id,
-            virtual_food_id: food.virtual_food_id,
+            restaurant_id: food.shopId,
+            id: food.id,
+            name: food.headName,
+            price: food.price,
           },
         ],
       })
     } else {
       const result = cart.map((v) => {
-        if (v.virtual_food_id === food.virtual_food_id) {
+        if (v.id === food.id) {
           return { ...v, quantity: v.quantity + 1 }
         }
         return v
@@ -51,7 +51,7 @@ export default class Stepper extends React.PureComponent {
   decrement = () => {
     const { food, cart } = this.props
     const result = cart.map((v) => {
-      if (v.virtual_food_id === food.virtual_food_id) {
+      if (v.id === food.id) {
         return { ...v, quantity: v.quantity - 1 }
       }
       return v
@@ -61,7 +61,7 @@ export default class Stepper extends React.PureComponent {
 
   render() {
     const { food, cart } = this.props
-    const cartFood = cart.find(v => v.virtual_food_id === food.virtual_food_id)
+    const cartFood = cart.find(v => v.id === food.id)
     const count = cartFood ? cartFood.quantity : 0
 
     return (

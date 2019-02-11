@@ -8,7 +8,7 @@ import Scroll from 'components/scroll'
 import Modal from 'components/modal'
 import Menu from './menu'
 // import Specs from '../cartcontrol/specs'
-// import Stepper from '../cartcontrol/stepper'
+import Stepper from '../cartcontrol/stepper'
 import { shopUpdate } from '../../../stores/shop'
 import styles from './index.less'
 
@@ -140,7 +140,7 @@ export default class Foods extends React.PureComponent {
                                   {f.price}
                                   {/* {this.getFoodPrice(f.specfoods)} */}
                                 </span>
-                                {/* <Stepper food={f} /> */}
+                                <Stepper food={f} />
                               </div>
                             </div>
                           </li>

@@ -112,9 +112,12 @@ export default class ShoppingCart extends React.PureComponent {
 
   render() {
     const { info, cart } = this.props
+    info.float_minimum_order_amount = 1
     const { modalVisible, balls } = this.state
     // 当前店中选中的食物
-    const cartList = cart.filter(v => v.restaurant_id === info.id)
+    const cartList = cart.filter(v => v.restaurant_id === info.info.id)
+
+    console.log('当前店中选中的食物  cartList', cartList)
     // count数量
     const count = cartList.reduce((acc, val) => {
       return acc + val.quantity
@@ -265,7 +268,7 @@ export default class ShoppingCart extends React.PureComponent {
                             <h1 className={styles.name}>{v.name}</h1>
                             <h3 className={styles.attr}>{v.attrs.map(a => a.value).join('-')}</h3>
                           </div>
-                          <div className={styles.price}>¥ {numeral(v.price * v.quantity).format('0.00')}</div>
+                          <div className={styles.price}>¥ {numeral(v.price * v.quantity / 100).format('0.00')}</div>
 
                           <div className={styles.stepper}>
                             <Stepper food={v} dropBall={false} />
