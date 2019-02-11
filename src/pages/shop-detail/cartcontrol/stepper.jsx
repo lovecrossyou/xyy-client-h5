@@ -17,7 +17,7 @@ import styles from './index.less'
 export default class Stepper extends React.PureComponent {
   increment = ({ target }) => {
     const { food, cart, dropBall = true } = this.props
-    const specs = food.specfoods ? food.specfoods[0] : null
+    const specs = null
     const isHas = cart.find(v => v.virtual_food_id === food.virtual_food_id)
     if (!isHas && specs) {
       this.props.shoppingCartUpdate({

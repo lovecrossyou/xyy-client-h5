@@ -4,7 +4,7 @@ import qs from 'query-string'
 import cls from 'classnames'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getImageUrl } from 'utils/utils'
+// import { getImageUrl } from 'utils/utils'
 import SvgIcon from 'components/icon-svg'
 import VerticalSlide from 'components/vertical-slide'
 import Scroll from 'components/scroll'
@@ -76,7 +76,8 @@ export default class ShopDetail extends React.Component {
       history,
     } = this.props
     const { tabIndex } = this.state
-    const shopImage = getImageUrl(info.image_path)
+    // const shopImage = getImageUrl(info.image_path)
+    const shopImage = info.info.imageUrl
     const activities = info.activities || []
 
     const verticalScrollProps = {
@@ -99,7 +100,7 @@ export default class ShopDetail extends React.Component {
           <div className={styles.icon} onClick={() => history.goBack()}>
             <SvgIcon name="#back" />
           </div>
-          <div className={styles.content} ref={c => this.navBar = c}>{info.name}</div>
+          <div className={styles.content} ref={c => this.navBar = c}>{info.info.name}</div>
         </div>
 
         <Scroll {...scrollProps}>
@@ -109,16 +110,16 @@ export default class ShopDetail extends React.Component {
             </div>
             <div className={styles.info}>
               <div className={styles.name}>
-                <h1 className={styles.text}>{info.name}</h1>
+                <h1 className={styles.text}>{info.info.name}</h1>
                 <div className={styles.icon}><SvgIcon name="#right" /></div>
               </div>
               <div className={styles.desc}>
-                <span>{info.rating}</span>
-                <span>月售{info.recent_order_num}单</span>
+                <span>{info.score}</span>
+                <span>月售{info.info.soldAmount}单</span>
                 {
-                  info.delivery_mode ? <span>蜂鸟快送</span> : null
+                  info.delivery_mode ? <span>蜂鸟快送</span> : <span>蜂鸟快送</span>
                 }
-                <span>约{info.order_lead_time}分钟</span>
+                <span>约{15}分钟</span>
                 <span>距离{info.distance}m</span>
               </div>
               <p className={styles.promotion}>{info.promotion_info}</p>

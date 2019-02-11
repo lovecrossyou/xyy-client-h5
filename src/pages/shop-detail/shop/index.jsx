@@ -13,28 +13,30 @@ import styles from './index.less'
 export default class ShopInfo extends React.PureComponent {
   render() {
     const { show, info } = this.props
-    const flavors = info.flavors.length ? info.flavors.map(v => v.name).join(',') : '--'
-    const opening_hours = info.opening_hours.length ? info.opening_hours.join(',') : '--'
+    console.log('info ###', info);
+
+    const flavors = '--'
+    const opening_hours = '--'
 
     return !show ? null : (
       <div className={styles['shop-info']}>
         <Scroll className={styles.scroll}>
           <div className={styles.card}>
             <h1 className={styles.title}>配送信息</h1>
-            <p className={styles.desc}>{`由蜂鸟快送提供配送,约${info.order_lead_time}分钟送达,距离${info.distance}m`}</p>
-            <p className={styles.desc}>{info.piecewise_agent_fee ? info.piecewise_agent_fee.description : ''}</p>
+            <p className={styles.desc}>由蜂鸟快送提供配送,约20分钟送达,距离5.4m</p>
+            <p className={styles.desc}>配送哈</p>
           </div>
 
           <div className={styles.card}>
             <h1 className={styles.title}>活动与服务</h1>
             {
-              info.activities ? info.activities.map(v => (
+              info.activityModels ? info.activityModels.map(v => (
                 <div className={styles.activities} key={v.id}>
                   <Badge
                     className={styles.icon}
                     text={v.icon_name}
-                    style={{ backgroundColor: `#${v.icon_color}` }} />
-                  <span className={styles.tips}>{v.tips}</span>
+                    style={{ backgroundColor: '#cce23028' }} />
+                  <span className={styles.tips}>{v.activityContent}</span>
                 </div>
               )) : <p className={styles.desc}>暂无活动</p>
             }

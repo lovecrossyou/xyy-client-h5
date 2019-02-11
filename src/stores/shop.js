@@ -1,13 +1,17 @@
 
 
 import Toast from 'components/toast'
-import { getShopInfo, getShopRatings, getShopFood, getRatingTags, getRatingScores } from '../api'
+import { getShopInfo, getShopRatings, getRatingTags, getRatingScores } from '../api'
 
 const UPDATE = 'SHOP_UPDATE'
 
 const initState = {
   loading: true,
-  info: {},
+  info: {
+    info: {
+      imageUrl: '',
+    },
+  },
   menu: [],
   tags: [],
   tagIndex: '',
@@ -42,17 +46,22 @@ export const shopDestroy = () => {
   }
 }
 
-export const shopInit = (params) => {
+export const shopInit = () => {
   return async (dispatch) => {
-    const { restaurant_id } = params
+    // const { restaurant_id } = params
+    const restaurant_id = 'E8769309642570958353'
     try {
-      const [info, menu, ratings, tags, scores] = await Promise.all([
+      // const [info, menu, ratings, tags, scores] = await Promise.all([
+      const [info, ratings, tags, scores] = await Promise.all([
+        // getShopInfo({
+        //   ...params,
+        //   terminal: 'h5',
+        //   extras: ['activities', 'albums', 'license', 'identification', 'qualification'],
+        // }),
         getShopInfo({
-          ...params,
-          terminal: 'h5',
-          extras: ['activities', 'albums', 'license', 'identification', 'qualification'],
+          id: restaurant_id,
         }),
-        getShopFood({ restaurant_id }),
+        // getShopFood({ restaurant_id }),
         getShopRatings({
           restaurant_id,
           has_content: true,
@@ -62,11 +71,13 @@ export const shopInit = (params) => {
         getRatingTags({ restaurant_id }),
         getRatingScores({ restaurant_id }),
       ])
+
       dispatch(shopUpdate({
         restaurant_id,
         loading: false,
-        info: info.data,
-        menu: menu.data,
+        // info: info.data,
+        info,
+        menu: info.products,
         ratings: ratings.data,
         tags: tags.data,
         tagIndex: tags.data.length ? tags.data[0].name : '',

@@ -44,7 +44,9 @@ export const getOrderDesc = (params) => { return HttpUtils.get('/elm/order-desc'
 
 
 // 商店
-export const getShopInfo = (params) => { return HttpUtils.get('/elm/restaurant_byid', params) }
+// export const getShopInfo = (params) => { return HttpUtils.get('/elm/restaurant_byid', params) }
+// 店铺信息
+export const getShopInfo = () => { return HttpUtils.getH5('/client/shop/shopInfo/13', {}) }
 export const getShopRatings = (params) => { return HttpUtils.get('/elm/restaurant_ratings', params) }
 export const getShopFood = (params) => { return HttpUtils.get('/elm/restaurant_menu', params) }
 export const getRatingTags = (params) => { return HttpUtils.get('/elm/rating_tags', params) }

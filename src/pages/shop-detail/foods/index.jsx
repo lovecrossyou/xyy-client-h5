@@ -7,8 +7,8 @@ import { getImageUrl } from 'utils/utils'
 import Scroll from 'components/scroll'
 import Modal from 'components/modal'
 import Menu from './menu'
-import Specs from '../cartcontrol/specs'
-import Stepper from '../cartcontrol/stepper'
+// import Specs from '../cartcontrol/specs'
+// import Stepper from '../cartcontrol/stepper'
 import { shopUpdate } from '../../../stores/shop'
 import styles from './index.less'
 
@@ -118,32 +118,29 @@ export default class Foods extends React.PureComponent {
                   <div className={styles.wrapper} key={i}>
                     <p className={styles.title}>
                       <span className={styles.tip}>{v.name}</span>
-                      <span className={styles.desc}>{v.description}</span>
+                      <span className={styles.desc}>{`${v.name}描述`}</span>
                     </p>
                     <div className={`${styles.line} hairline-h`} />
                     <ul>
                       {
-                        v.foods.map(f => (
+                        v.products.map(f => (
                           <li key={f.item_id} className={styles.item}>
                             <div className={styles.img} onClick={() => this.foodClick(f)}>
-                              <img src={getImageUrl(f.image_path)} />
+                              <img src={f.headImage} />
                             </div>
                             <div className={styles.content}>
-                              <h1 className={styles.name}>{f.name}</h1>
-                              <p className={styles.description}>{f.description}</p>
+                              <h1 className={styles.name}>{f.headName}</h1>
+                              <p className={styles.description}>{f.productDescribe}</p>
                               <p className={styles.info}>
-                                <span>月售{f.month_sales}份</span>
-                                <span>好评率{f.satisfy_rate}%</span>
+                                <span>月售{f.saleAmount}份</span>
+                                <span>好评率90%</span>
                               </p>
                               <div className={styles['sales-info']}>
                                 <span className={styles.price}>
-                                  {this.getFoodPrice(f.specfoods)}
+                                  {f.price}
+                                  {/* {this.getFoodPrice(f.specfoods)} */}
                                 </span>
-                                {
-                                  f.attrs.length ? (
-                                    <Specs food={f} />
-                                  ) : <Stepper food={f} />
-                                }
+                                {/* <Stepper food={f} /> */}
                               </div>
                             </div>
                           </li>

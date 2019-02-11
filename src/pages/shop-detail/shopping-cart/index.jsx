@@ -126,20 +126,20 @@ export default class ShoppingCart extends React.PureComponent {
     // button
     const buttonDes = (() => {
       if (price === 0) {
-        return `￥${info.float_minimum_order_amount}元起送`
+        return '￥5元起送'
       } else if (price < info.float_minimum_order_amount) {
-        return `还差￥${info.float_minimum_order_amount - price}元起送`
+        return '还差￥12元起送'
       }
       return '去结算'
     })()
 
     // notice 和 真实价格
     const priceInfo = (() => {
-      const { activities } = info
+      const { activityModels } = info
       let notice = '暂无满减'
       let real_price = price
-      if (activities.length && activities[0].type === 102) {
-        const discount = JSON.parse(activities[0].attribute)
+      if (activityModels.length && activityModels[0].type === 102) {
+        const discount = JSON.parse(activityModels[0].attribute)
         const keys = Object.keys(discount)
         // 寻找满减key
         let discountKey
@@ -153,7 +153,7 @@ export default class ShoppingCart extends React.PureComponent {
           notice = `已满${discountKey},结算减${discount[discountKey]['1']}元`
         } else {
           real_price = price // 打完折后到价格
-          notice = activities[0].description
+          notice = activityModels[0].description
         }
       }
       return {
