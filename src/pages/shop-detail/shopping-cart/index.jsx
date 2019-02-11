@@ -189,7 +189,7 @@ export default class ShoppingCart extends React.PureComponent {
 
     return (
       <div className={styles.cart}>
-        <div className={styles.notice}>{priceInfo.notice}</div>
+        {/* <div className={styles.notice}>{priceInfo.notice}</div> */}
         <div className={styles.body}>
           <div className={styles.cart}>
             <div
