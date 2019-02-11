@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { getImageUrl } from 'utils/utils'
+// import { getImageUrl } from 'utils/utils'
 import Scroll from 'components/scroll'
 import Badge from '../../common-components/badge'
 import styles from './index.less'
@@ -46,9 +46,9 @@ export default class ShopInfo extends React.PureComponent {
             <h1 className={styles.title}>商家实景</h1>
             <div>
               {
-                info.albums ? info.albums.map((img, i) => (
+                info.info.shopDetailImage ? info.info.shopDetailImage.map((img, i) => (
                   <div className={styles.img} key={i}>
-                    <img src={getImageUrl(img.photos[0].image_hash)} />
+                    <img src={img} />
                   </div>
                 )) : <p className={styles.desc}>暂无实景</p>
               }

@@ -138,7 +138,7 @@ export default class Foods extends React.PureComponent {
                               </p>
                               <div className={styles['sales-info']}>
                                 <span className={styles.price}>
-                                  {numeral(f.price).format('0.00')}
+                                  {numeral(f.price / 100).format('0.00')}
                                   {/* {this.getFoodPrice(f.specfoods)} */}
                                 </span>
                                 <Stepper food={f} />

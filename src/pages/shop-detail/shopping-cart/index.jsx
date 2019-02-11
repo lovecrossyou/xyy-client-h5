@@ -124,7 +124,7 @@ export default class ShoppingCart extends React.PureComponent {
     }, 0)
     // price价格
     const price = cartList.reduce((acc, val) => {
-      return acc + (val.price * val.quantity)
+      return acc + (val.price / 100 * val.quantity)
     }, 0)
     // button
     const buttonDes = (() => {

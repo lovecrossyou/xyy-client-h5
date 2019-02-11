@@ -153,7 +153,7 @@ export default class ShopDetail extends React.Component {
           </div>
 
           <div className={styles.tab}>
-            <div className={activeCls(0)} onClick={() => this.tabClick(0)}>点餐</div>
+            <div className={activeCls(0)} onClick={() => this.tabClick(0)}>下单</div>
             <div className={activeCls(1)} onClick={() => this.tabClick(1)}>评价</div>
             <div className={activeCls(2)} onClick={() => this.tabClick(2)}>商家</div>
           </div>

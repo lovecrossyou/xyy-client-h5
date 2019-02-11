@@ -48,7 +48,9 @@ export const getOrderDesc = (params) => { return HttpUtils.get('/elm/order-desc'
 // 店铺信息
 export const getShopInfo = (params) => { return HttpUtils.getH5(`/client/shop/shopInfo/${params.id}`, {}) }
 // 商品评价
-export const getShopRatings = (params) => { return HttpUtils.get('/elm/restaurant_ratings', params) }
+// eslint-disable-next-line max-len
+// export const getShopRatings = (params) => { return HttpUtils.get('/elm/restaurant_ratings', params) }
+export const getShopRatings = (params) => { return HttpUtils.getH5('/client/shop/comments', params) }
 
 export const getShopFood = (params) => { return HttpUtils.get('/elm/restaurant_menu', params) }
 export const getRatingTags = (params) => { return HttpUtils.get('/elm/rating_tags', params) }

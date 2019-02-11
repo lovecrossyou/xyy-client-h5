@@ -139,7 +139,7 @@ export default class Ratings extends React.PureComponent {
 
           {
             ratings.map(v => (
-              <div className={styles['rating-item']} key={v.order_id}>
+              <div className={styles['rating-item']} key={v.orderId}>
                 <div className={`${styles.line} hairline-h`} />
                 <div className={styles.left}>
                   <div className={styles.avatar}>
@@ -148,16 +148,16 @@ export default class Ratings extends React.PureComponent {
                 </div>
                 <div className={styles.right}>
                   <div className={styles.user}>
-                    <span className={styles.name}>{v.username}</span>
-                    <span className={styles.time}>{v.rated_at}</span>
+                    <span className={styles.name}>{v.userName}</span>
+                    <span className={styles.time}>{v.createTime}</span>
                   </div>
                   <div className={styles.rating}>
                     <span className={styles.star}>
-                      <Rate className={styles['rate-style']} value={Number(service_score)} size="1em" />
+                      <Rate className={styles['rate-style']} value={Number(v.score)} size="1em" />
                     </span>
-                    <span className={styles.desc}>{v.time_spent_desc}</span>
+                    <span className={styles.desc}>耗时12分钟</span>
                   </div>
-                  <div className={styles.text}>{v.rating_text}</div>
+                  <div className={styles.text}>{v.commentInfo}</div>
                   {
                     v.order_images && v.order_images.length ? (
                       <div className={styles['order-img']}>
