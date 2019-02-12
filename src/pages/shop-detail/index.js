@@ -4,7 +4,6 @@ import qs from 'query-string'
 import cls from 'classnames'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-// import { getImageUrl } from 'utils/utils'
 import SvgIcon from 'components/icon-svg'
 import VerticalSlide from 'components/vertical-slide'
 import Scroll from 'components/scroll'
@@ -76,7 +75,6 @@ export default class ShopDetail extends React.Component {
       history,
     } = this.props
     const { tabIndex } = this.state
-    // const shopImage = getImageUrl(info.image_path)
     const shopImage = info.info.imageUrl
     const activities = info.activities || []
 
