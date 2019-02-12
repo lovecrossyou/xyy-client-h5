@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux'
 
 import SvgIcon from 'components/icon-svg'
 import Scroll from 'components/scroll'
+import withTabBar from '../common-components/tab-bar'
 
 import styles from './index.less';
 import { shoppingCartUpdate } from '../../stores/shopping-cart'
@@ -58,6 +59,7 @@ const Cart = () => {
 };
 
 @connect(mapStateToPros, mapDispatchToPrps)
+@withTabBar
 export default class ShoppingCart extends React.Component {
   render() {
     const { history, cart } = this.props

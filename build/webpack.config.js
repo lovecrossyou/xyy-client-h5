@@ -19,7 +19,7 @@ const devServer = {
   publicPath: '/',
   proxy: {
     '/api': {
-      target: 'http://47.94.169.143:3333',
+      target: 'http://127.0.0.1:3333',
       pathRewrite: {'^/api' : ''},
       changeOrigin: true
     },
