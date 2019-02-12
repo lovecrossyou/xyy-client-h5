@@ -33,8 +33,8 @@ export default class HttpUtil {
     return new Promise((resolve, reject) => {
       instanceH5.post(url, params).then((res) => {
         if (res.data.status === successStatus) {
-          const { result } = res
-          resolve({ data: result })
+          const { data } = res.data
+          resolve(data)
         } else {
           reject({ err: res.errmsg, name: res.name || '' })
         }

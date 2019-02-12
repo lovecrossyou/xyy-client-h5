@@ -48,7 +48,7 @@ const searchAddress = asyncLoad(() => import('./address-nearby'), <Loading />)
 const searchShop = asyncLoad(() => import('./search-shop'), <Loading />)
 const benefit = asyncLoad(() => import('./benefit'), <Loading />)
 const shoppingcart = asyncLoad(() => import('./shoppingcart'), <Loading />)
-const PlaceOrder = asyncLoad(() => import('./place-order'), <Loading />)
+const PlaceOrder = asyncLoad(() => import('./place-order/index'), <Loading />)
 const Tickets = asyncLoad(() => import('./place-order/tickets'), <Loading />)
 export default () => (
   <React.Fragment>

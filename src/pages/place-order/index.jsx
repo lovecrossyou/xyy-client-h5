@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { chooseTicket } from '../../stores/orderConfirm'
+import { chooseTicket, getConfirmOrderInfo } from '../../stores/orderConfirm'
 import NavBar from '../common-components/nav-bar'
 import styles from './index.less'
 import cls from 'classnames'
@@ -17,8 +17,16 @@ import wechat_pay_icon from '../../assets/img/platform/wechat_pay_icon.png';
 import Modal from '../../components/modal';
 
 class PlaceOrder extends React.Component {
+  componentDidMount() {
+    this.props.getConfirmOrderInfo(() => {
+          // eslint-disable-line
+    })
+  }
   render() {
-    const { history } = this.props;
+    const { history, info } = this.props;
+    const { productItemList } = info;
+    console.log('333333333')
+    console.log(JSON.stringify(info))
     return (
       <div className={styles['place-order']}>
         <NavBar
@@ -29,7 +37,7 @@ class PlaceOrder extends React.Component {
           <AddressChoose data={this.props.address} chooseAddAction={() => history.push('/address?choose=1')} />
           <ArriveAndPay title="送达时间" value="尽快送达(15:10送达)" />
           <ArriveAndPay title="支付方式" value="在线支付" />
-          <WaterStoreInfo />
+          <WaterStoreInfo productItemList={productItemList} />
           <div className={styles.bottom_white}>
             <OrderInfoItem_action
               name="使用优惠卷"
@@ -104,26 +112,26 @@ class PayChooseModal extends Component {
     )
   }
 }
-const WaterStoreInfos = [
-  {
-    title: '农夫山泉', count: '2', money: '15', img: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=153185588,3077905438&fm=27&gp=0.jpg',
-  },
-  {
-    title: '乐百氏', count: '2', money: '12', img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2044731858,1878235851&fm=27&gp=0.jpg',
-  },
-  {
-    title: '哇哈哈', count: '2', money: '16', img: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2447413415,3983146968&fm=179&app=42&f=JPEG?w=242&h=242',
-  },
-  {
-    title: '怡宝', count: '1', money: '10', img: 'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=1316944245,1173320322&fm=85&s=49A01D724303614B1EF5E1CF0300C0A2',
-  },
-];
-const WaterStoreInfo = () => {
+// const WaterStoreInfos = [
+//   {
+//     title: '农夫山泉', count: '2', money: '15', img: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=153185588,3077905438&fm=27&gp=0.jpg',
+//   },
+//   {
+//     title: '乐百氏', count: '2', money: '12', img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2044731858,1878235851&fm=27&gp=0.jpg',
+//   },
+//   {
+//     title: '哇哈哈', count: '2', money: '16', img: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2447413415,3983146968&fm=179&app=42&f=JPEG?w=242&h=242',
+//   },
+//   {
+//     title: '怡宝', count: '1', money: '10', img: 'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=1316944245,1173320322&fm=85&s=49A01D724303614B1EF5E1CF0300C0A2',
+//   },
+// ];
+const WaterStoreInfo = ({ productItemList }) => {
   return (
     <div className={styles.water_store_info}>
       <div className={styles.water_store_h_t}>水站信息</div>
       {
-        WaterStoreInfos.map((value, index) => {
+        productItemList.map((value, index) => {
           return <WaterStoreItem data={value} key={index} />
         })
       }
@@ -158,15 +166,16 @@ class OrderInfoItem_action extends Component {
 }
 
 const WaterStoreItem = ({ data }) => {
+  const { shopProduct } = data;
   return (
     <div className={styles.water_store_item}>
       <div className={styles.water_store_item_title_c}>
-        <img className={styles.water_store_item_img} src={data.img} />
-        <div className={styles.water_store_item_title}>{data.title}</div>
+        <img className={styles.water_store_item_img} src={shopProduct.headImage} />
+        <div className={styles.water_store_item_title}>{shopProduct.headName}</div>
       </div>
       <div className={styles.water_store_item_count_c}>
-        <div className={styles.water_store_item_count}>{ `x${data.count}`}</div>
-        <div className={styles.water_store_item_money}>{`¥ ${data.money}`}</div>
+        <div className={styles.water_store_item_count}>{ `x${shopProduct.spec}`}</div>
+        <div className={styles.water_store_item_money}>{`¥ ${shopProduct.price / 100}`}</div>
       </div>
     </div>
   )
@@ -206,15 +215,17 @@ const BottomBar = () => {
     </div>
   )
 }
-const mapStateToProps = ({ orderConfirm }) => ({
+const mapStateToProps = ({ orderConfirm, shoppingCart }) => ({
   info: orderConfirm.info,
   tickets: orderConfirm.tickets,
   ticket: orderConfirm.ticket,
   address: orderConfirm.address,
+  cart: shoppingCart.cart,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   chooseTicket,
+  getConfirmOrderInfo,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaceOrder)
