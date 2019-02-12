@@ -25,8 +25,6 @@ class PlaceOrder extends React.Component {
   render() {
     const { history, info } = this.props;
     const { productItemList } = info;
-    console.log('333333333')
-    console.log(JSON.stringify(info))
     return (
       <div className={styles['place-order']}>
         <NavBar
@@ -47,13 +45,16 @@ class PlaceOrder extends React.Component {
             <div style={{ height: '30px' }} />
             <OrderInfoItem_action
               name="订单备注"
-              value="下班之后配送"
+              value={this.props.remark}
               orderInfo_item_right_v_style={styles.orderInfo_color_gray9}
-              orderInfo_item_left_style={styles.orderInfo_color_gray2e} />
+              orderInfo_item_left_style={styles.orderInfo_color_gray2e}
+              callBack={() => history.push('/orderRemark')}
+              />
           </div>
         </div>
         <BottomBar />
         <PayChooseModal />
+
       </div>
     )
   }
@@ -112,6 +113,7 @@ class PayChooseModal extends Component {
     )
   }
 }
+
 // const WaterStoreInfos = [
 //   {
 //     title: '农夫山泉', count: '2', money: '15', img: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=153185588,3077905438&fm=27&gp=0.jpg',
@@ -221,6 +223,7 @@ const mapStateToProps = ({ orderConfirm, shoppingCart }) => ({
   ticket: orderConfirm.ticket,
   address: orderConfirm.address,
   cart: shoppingCart.cart,
+  remark: orderConfirm.remark,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

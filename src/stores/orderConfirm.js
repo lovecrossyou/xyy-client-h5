@@ -7,6 +7,7 @@ const GETCHOOSELIST = 'GETCHOOSELIST'
 const ticketClick = 'ticketClick'
 const CHOOSEADDRESS = 'chooseAddress_order'
 const CONFIRMINFO = 'saveconfirminfo'
+const ORDERREMARKE = 'ORDERREMARKE'
 
 
 const mytickets = [{ name: '新人首单立减', money: 20 },
@@ -21,6 +22,7 @@ const initState = {
   ticketChooseIndex: -1,
   ticket: {},
   address: {},
+  remark: '',
 }
 
 
@@ -51,6 +53,11 @@ export const orderConfirm = (state = initState, action) => {
         ...state,
         info: action.payload,
       }
+    case ORDERREMARKE:
+      return {
+        ...state,
+        remark: action.payload,
+      }
     default:
       return state
   }
@@ -67,14 +74,6 @@ export const chooseTicket = (params) => {
     type: CHOOSETICKET,
   }
 }
-
-export const saveOrderInfo = (params) => {
-  return {
-    payload: params,
-    type: CONFIRMINFO,
-  }
-}
-
 export const ticketClickAction = (chooseIndex) => {
   return {
     payload: chooseIndex,
@@ -85,6 +84,12 @@ export const chooseAddress = (params) => {
   return {
     payload: params,
     type: CHOOSEADDRESS,
+  }
+}
+export const saveOrderInfo = (params) => {
+  return {
+    payload: params,
+    type: CONFIRMINFO,
   }
 }
 export const getConfirmOrderInfo = (callback) => {
@@ -117,5 +122,12 @@ export const getConfirmOrderInfo = (callback) => {
     } catch ({ err }) {
       Toast.info(err, 3, false)
     }
+  }
+}
+
+export const orderRemark = (params) => {
+  return {
+    payload: params,
+    type: ORDERREMARKE,
   }
 }

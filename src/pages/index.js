@@ -8,6 +8,7 @@ import asyncLoad from 'components/async-loade'
 import Loading from './common-components/lazy-loading'
 import { getUserInfo } from '../api'
 import { globalUpdate } from '../stores/global'
+import OrderRemark from './place-order/order-remark';
 
 @connect(() => ({}), dispatch => bindActionCreators({
   globalUpdate,
@@ -71,6 +72,7 @@ export default () => (
       <Route path="/shoppingcart" component={shoppingcart} />
       <Route path="/placeOrder" component={PlaceOrder} />
       <Route path="/tickets" component={Tickets} />
+      <Route path="/orderRemark" component={OrderRemark} />
 
 
     </Switch>
