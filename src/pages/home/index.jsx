@@ -3,6 +3,8 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import queryString from 'query-string'
 import { connect } from 'react-redux'
+import { getImageUrl } from 'utils/utils'
+
 import { bindActionCreators } from 'redux'
 import Slide from 'components/slide'
 import Scroll from 'components/scroll'
@@ -149,7 +151,7 @@ export default class Home extends React.Component {
                   entry.slice(0, 10).map(v => (
                     <div className={styles.item} key={v.id} onClick={() => this.iconClick(v)}>
                       <div className={styles.img}>
-                        <img alt="" src={v.image_url} />
+                        <img alt="" src={getImageUrl(v.image_url)} />
                       </div>
                       <p className={styles.name}>{v.name}</p>
                     </div>
