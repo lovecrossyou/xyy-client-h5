@@ -23,7 +23,7 @@ export default (Component) => {
               <SvgIcon className={cls(styles.icon)} name="#home" />
               <h1 className={styles.text}>首页</h1>
             </div>
-            <div className={itemCls('/compass')} onClick={() => handleClick('/shoppingcart')}>
+            <div className={itemCls('/shoppingcart')} onClick={() => handleClick('/shoppingcart')}>
               <SvgIcon className={styles.icon} name="#shopping-cart" />
               <h1 className={styles.text}>购物车</h1>
             </div>
