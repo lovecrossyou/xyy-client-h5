@@ -1,3 +1,4 @@
+/* eslint-disable no-script-url */
 
 import React from 'react'
 import cls from 'classnames'
@@ -28,6 +29,8 @@ export default class OrderDetail extends React.Component {
         getOrderSnapshot(state),
         getOrderDesc(state),
       ])
+      console.log(`desc=======>${JSON.stringify(desc)}`);
+      console.log(`snapshot=======>${JSON.stringify(snapshot)}`);
       this.setState({
         desc: desc.data,
         snapshot: snapshot.data,
@@ -41,7 +44,6 @@ export default class OrderDetail extends React.Component {
     const { desc, snapshot } = this.state
     const food = snapshot.basket ? snapshot.basket.group[0] : []
     const extra = snapshot.basket ? snapshot.basket.extra : []
-
     return (
       <div className={styles.detail}>
         <NavBar
@@ -50,6 +52,7 @@ export default class OrderDetail extends React.Component {
           leftClick={() => this.props.history.goBack()} />
         <Scroll className={styles.scroll} dataSource={food}>
           <div className={styles.content}>
+
             <div className={styles.item}>
               <div className={styles.img}>
                 <img src={getImageUrl(snapshot.restaurant_image_hash)} />
@@ -87,7 +90,7 @@ export default class OrderDetail extends React.Component {
             }
 
             {
-              snapshot.basket && snapshot.basket.hongbao.category_id ? (
+              snapshot.basket && snapshot.basket.hongbao ? (
                 <div className={styles.item}>
                   <span className={styles.text}>{snapshot.basket.hongbao.name}</span>
                   <span
