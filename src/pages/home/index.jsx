@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import queryString from 'query-string'
 import { connect } from 'react-redux'
-import { getImageUrl } from 'utils/utils'
+// import { getImageUrl } from 'utils/utils'
 
 import { bindActionCreators } from 'redux'
 import Slide from 'components/slide'
@@ -122,6 +122,7 @@ export default class Home extends React.Component {
 
     console.log('render banner ', banner)
     console.log('render shoplist ', shoplist)
+    console.log('render entry ', entry)
     const scrollProps = {
       className: styles.scroll,
       dataSource: shoplist,
@@ -148,10 +149,10 @@ export default class Home extends React.Component {
               </Slide>
               <div className={styles['entry-wrapper']}>
                 {
-                  entry.slice(0, 10).map(v => (
+                  entry.slice(0, 5).map(v => (
                     <div className={styles.item} key={v.id} onClick={() => this.iconClick(v)}>
                       <div className={styles.img}>
-                        <img alt="" src={getImageUrl(v.image_url)} />
+                        <img alt="" src={v.image_url} />
                       </div>
                       <p className={styles.name}>{v.name}</p>
                     </div>
