@@ -32,12 +32,13 @@ export default class Stepper extends React.PureComponent {
             id: food.id,
             name: food.headName,
             price: food.price,
+            headImage: food.headImage,
           },
         ],
       })
     } else {
       const result = cart.map((v) => {
-        if (v.id === food.id) {
+        if (v.restaurant_id === food.shopId) {
           return { ...v, quantity: v.quantity + 1 }
         }
         return v

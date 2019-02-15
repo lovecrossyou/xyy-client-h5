@@ -51,6 +51,7 @@ export default class Order extends React.PureComponent {
   }
 
   rowClick = (id) => {
+    console.log(`id===========>${id}`)
     this.props.history.push({
       pathname: '/order-detail',
       state: { id },

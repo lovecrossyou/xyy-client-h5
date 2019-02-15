@@ -143,7 +143,8 @@ export default class Home extends React.Component {
               <Slide>
                 {
                   banner.map(v => (
-                    <img key={v.id} src={v.image} alt="" />
+                    // <img key={v.id} src={v.image} alt="" />
+                    <img key={v.id} src="https://fuss10.elemecdn.com/2/f6/36e52bca0d6db458e9855b7fc5813jpeg.jpeg?imageMogr/format/webp/thumbnail/568x/" alt="" />
                   ))
                 }
               </Slide>

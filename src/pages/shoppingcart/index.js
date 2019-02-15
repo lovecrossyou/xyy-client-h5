@@ -27,23 +27,23 @@ const mapStateToPros = ({ shoppingCart }) => {
 const mapDispatchToPrps = dispatch => bindActionCreators({ shoppingCartUpdate }, dispatch)
 
 
-const Product = () => {
+const Product = ({ data }) => {
   return (
     <div className={styles.shoppingcart_product_info}>
       <img className={styles.shoppingcart_product_icon} src="" alt="" />
-      <div className={styles.p_name}>农夫山泉</div>
-      <div className={styles.p_price}>¥ 18.00</div>
+      <div className={styles.p_name}>{data.name}</div>
+      <div className={styles.p_price}>¥ {data.price}</div>
     </div>
   )
 }
 
-const Cart = () => {
+const Cart = ({ cart }) => {
   return (
     <div className={styles.shoppingcart_wrapper}>
       <div className={styles.shoppingcart_shopInfo_wrapper}>
         <div className={styles.shoppingcart_shopInfo}>
           <img src="" alt="" className={styles.shoppingcart_shop_icon} />
-          <div className={styles.shoppingcart_shop_name}>家乐福</div>
+          <div className={styles.shoppingcart_shop_name}>{cart.name}</div>
         </div>
         <div>
           <SvgIcon name="#right" className={styles['icon-right']} />
@@ -51,8 +51,11 @@ const Cart = () => {
       </div>
 
       <div className={styles.products}>
-        <Product />
-        <Product />
+        {
+          cart.items.slice(0, 3).map((p, index) => {
+            return <Product data={p} key={`${index}#`} />
+          })
+        }
       </div>
     </div>
   );
@@ -61,18 +64,41 @@ const Cart = () => {
 @connect(mapStateToPros, mapDispatchToPrps)
 @withTabBar
 export default class ShoppingCart extends React.Component {
+  // 购物车根据店铺ID分组
+  split_cart_group(arr) {
+    const map = {}
+    const carts = []
+    for (let i = 0; i < arr.length; i++) {
+      const ai = arr[i];
+      if (!map[ai.restaurant_id]) {
+        carts.push({
+          id: ai.restaurant_id,
+          name: ai.name,
+          items: [ai],
+        });
+        map[ai.restaurant_id] = ai;
+      } else {
+        for (let j = 0; j < carts.length; j++) {
+          const dj = carts[j];
+          if (dj.id === ai.restaurant_id) {
+            dj.items.push(ai);
+            break;
+          }
+        }
+      }
+    }
+    return carts.filter(cart => cart.id !== undefined);
+  }
   render() {
     const { history, cart } = this.props
-
+    const carts = this.split_cart_group(cart)
+    console.log('carts #', carts);
     const scrollProps = {
       className: styles.scroll,
-      dataSource: cart,
+      dataSource: carts,
       pullUpLoad: true,
       pullingUp: this.props.shoppingCartUpdate,
     }
-
-    console.log('cart ', cart);
-
     return (
       <div className={styles.shoppingcart}>
         <NavBar
@@ -80,12 +106,9 @@ export default class ShoppingCart extends React.Component {
           iconLeft="#back"
           leftClick={() => history.goBack()} />
         <Scroll {...scrollProps}>
-          <Cart />
-          <Cart />
-          <Cart />
-          <Cart />
-          <Cart />
-          <Cart />
+          {
+            carts.map((d, index) => <Cart cart={d} key={`${index}#`} />)
+          }
         </Scroll>
       </div>
     );
