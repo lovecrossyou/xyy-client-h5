@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import asyncLoad from 'components/async-loade'
 import Loading from './common-components/lazy-loading'
-import { getUserInfo } from '../api'
+// import { getUserInfo } from '../api'
 import { globalUpdate } from '../stores/global'
 import OrderRemark from './place-order/order-remark';
 
@@ -15,20 +15,20 @@ import OrderRemark from './place-order/order-remark';
 }, dispatch))
 
 class AuthComponent extends React.Component {
-  async componentDidMount() {
-    try {
-      const { data } = await getUserInfo()
-      this.props.globalUpdate({
-        isLogin: true,
-        userInfo: data,
-      })
-    } catch (err) {
-      this.props.globalUpdate({
-        globalUpdate: false,
-        userInfo: {},
-      })
-    }
-  }
+  // async componentDidMount() {
+  //   try {
+  //     const { data } = await getUserInfo()
+  //     this.props.globalUpdate({
+  //       isLogin: true,
+  //       userInfo: data,
+  //     })
+  //   } catch (err) {
+  //     this.props.globalUpdate({
+  //       globalUpdate: false,
+  //       userInfo: {},
+  //     })
+  //   }
+  // }
 
   render() {
     return null
@@ -73,8 +73,6 @@ export default () => (
       <Route path="/placeOrder" component={PlaceOrder} />
       <Route path="/tickets" component={Tickets} />
       <Route path="/orderRemark" component={OrderRemark} />
-
-
     </Switch>
   </React.Fragment>
 )

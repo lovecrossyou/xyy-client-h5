@@ -71,6 +71,8 @@ export default class ShoppingCart extends React.Component {
       pullingUp: this.props.shoppingCartUpdate,
     }
 
+    console.log('cart ', cart);
+
     return (
       <div className={styles.shoppingcart}>
         <NavBar
