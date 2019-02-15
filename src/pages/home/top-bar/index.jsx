@@ -34,7 +34,7 @@ export default class TopBar extends React.PureComponent {
         </div>
         <div className={styles.search} onClick={() => history.push('/search-shop')}>
           <SvgIcon className={styles.icon} name="#search" />
-          <p className={styles.desc}>搜索饿了么商家、商品名称</p>
+          <p className={styles.desc}>搜索商家、商品名称</p>
         </div>
       </div>
     )
