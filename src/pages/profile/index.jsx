@@ -6,14 +6,14 @@ import cls from 'classnames'
 import SvgIcon from 'components/icon-svg'
 import { formatPhone, getImageUrl } from 'utils/utils'
 import NavBar from '../common-components/nav-bar'
-import withTabBar from '../common-components/tab-bar'
+// import withTabBar from '../common-components/tab-bar'
 import styles from './index.less'
 
 @connect(({ globalState }) => ({
   isLogin: globalState.isLogin,
   userInfo: globalState.userInfo,
 }))
-@withTabBar
+// @withTabBar
 export default class Profile extends React.Component {
   render() {
     const { history, userInfo, isLogin } = this.props

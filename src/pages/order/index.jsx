@@ -3,10 +3,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import DocumentTitle from 'react-document-title';
+
 import { fetchOrderList } from 'stores/order'
 import Scroll from 'components/scroll'
-import NavBar from '../common-components/nav-bar'
-import withTabBar from '../common-components/tab-bar'
+// import NavBar from '../common-components/nav-bar'
+// import withTabBar from '../common-components/tab-bar'
 import OrderRow from '../common-components/order-list-row'
 import AuthErr from '../common-components/auth-err'
 import RowSk from '../common-components/skeleton/row'
@@ -23,7 +25,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 @connect(mapStateToProps, mapDispatchToProps)
-@withTabBar
+// @withTabBar
 export default class Order extends React.PureComponent {
   componentDidMount() {
     const { isLogin, init } = this.props
@@ -74,27 +76,29 @@ export default class Order extends React.PureComponent {
     }
 
     return (
-      <div className={styles.order}>
-        <NavBar
-          className={styles.nav}
-          title="订单"
-          iconLeft="#back"
-          leftClick={() => this.props.history.goBack()} />
-        {
-          isLogin ? (
-            <Scroll {...scrollProps} ref={c => this.scroll = c}>
-              {
-                // this.rowClick(v.unique_id)
-                init ? orderList.map(v => (
-                  <OrderRow key={v.id} data={v} handleClick={() => this.rowClick(v.unique_id)} />
-                )) : Array.from({ length: 10 }, (v, i) => i).map(v => (
-                  <RowSk key={v} style={{ backgroundColor: '#fff', marginBottom: 10 }} />
-                ))
-              }
-            </Scroll>
-          ) : <AuthErr />
-        }
-      </div>
+      <DocumentTitle title="订单" >
+        <div className={styles.order}>
+          {/* <NavBar
+            className={styles.nav}
+            title="订单"
+            iconLeft="#back"
+            leftClick={() => this.props.history.goBack()} /> */}
+          {
+            isLogin ? (
+              <Scroll {...scrollProps} ref={c => this.scroll = c}>
+                {
+                  // this.rowClick(v.unique_id)
+                  init ? orderList.map(v => (
+                    <OrderRow key={v.id} data={v} handleClick={() => this.rowClick(v.unique_id)} />
+                  )) : Array.from({ length: 10 }, (v, i) => i).map(v => (
+                    <RowSk key={v} style={{ backgroundColor: '#fff', marginBottom: 10 }} />
+                  ))
+                }
+              </Scroll>
+            ) : <AuthErr />
+          }
+        </div>
+      </DocumentTitle>
     )
   }
 }
