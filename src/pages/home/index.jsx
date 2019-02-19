@@ -4,13 +4,14 @@ import ReactDom from 'react-dom'
 import queryString from 'query-string'
 import { connect } from 'react-redux'
 // import { getImageUrl } from 'utils/utils'
+import DocumentTitle from 'react-document-title';
 
 import { bindActionCreators } from 'redux'
 import Slide from 'components/slide'
 import Scroll from 'components/scroll'
 import Toast from 'components/toast'
 import { homeUpdate, homeInit, homeList } from '../../stores/home'
-import withTabBar from '../common-components/tab-bar'
+// import withTabBar from '../common-components/tab-bar'
 import TitleBar from '../common-components/title-bar'
 import ShopListRow from '../common-components/shop-list-row'
 import Skeleton from './skeleton-screen'
@@ -34,7 +35,7 @@ const mapActionsToProps = dispatch => bindActionCreators({
   mapStateToProps,
   mapActionsToProps,
 )
-@withTabBar
+// @withTabBar
 export default class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -135,45 +136,47 @@ export default class Home extends React.Component {
     }
 
     return (
-      <div className={styles.root}>
-        <TopBar ref={this.getTopBarHeight} />
-        {
-          init ? (
-            <Scroll {...scrollProps} ref={c => this.scroll = c}>
-              <Slide>
-                {
-                  banner.map(v => (
-                    // <img key={v.id} src={v.image} alt="" />
-                    <img key={v.id} src="http://qnimage.xiteng.com/fuss10.elemecdn.jpg" alt="" />
-                  ))
-                }
-              </Slide>
-              <div className={styles['entry-wrapper']}>
-                {
-                  entry.slice(0, 5).map(v => (
-                    <div className={styles.item} key={v.id} onClick={() => this.iconClick(v)}>
-                      <div className={styles.img}>
-                        <img alt="" src={v.image_url} />
+      <DocumentTitle title="首页" >
+        <div className={styles.root}>
+          <TopBar ref={this.getTopBarHeight} />
+          {
+            init ? (
+              <Scroll {...scrollProps} ref={c => this.scroll = c}>
+                <Slide>
+                  {
+                    banner.map(v => (
+                      // <img key={v.id} src={v.image} alt="" />
+                      <img key={v.id} src="http://qnimage.xiteng.com/fuss10.elemecdn.jpg" alt="" />
+                    ))
+                  }
+                </Slide>
+                <div className={styles['entry-wrapper']}>
+                  {
+                    entry.slice(0, 5).map(v => (
+                      <div className={styles.item} key={v.id} onClick={() => this.iconClick(v)}>
+                        <div className={styles.img}>
+                          <img alt="" src={v.image_url} />
+                        </div>
+                        <p className={styles.name}>{v.name}</p>
                       </div>
-                      <p className={styles.name}>{v.name}</p>
-                    </div>
+                    ))
+                  }
+                </div>
+                <TitleBar title="推荐商家" />
+                {
+                  shoplist.map((shop, i) => (
+                    <ShopListRow
+                      handleClick={() => this.handleRowClick(shop)}
+                      key={`${shop.id}--${i}--${new Date().getTime()}`}
+                      data={shop}
+                      refresh={this.refreshScroll} />
                   ))
                 }
-              </div>
-              <TitleBar title="推荐商家" />
-              {
-                shoplist.map((shop, i) => (
-                  <ShopListRow
-                    handleClick={() => this.handleRowClick(shop)}
-                    key={`${shop.id}--${i}--${new Date().getTime()}`}
-                    data={shop}
-                    refresh={this.refreshScroll} />
-                ))
-              }
-            </Scroll>
-          ) : <Skeleton style={{ paddingTop: topBarHeight }} />
-        }
-      </div>
+              </Scroll>
+            ) : <Skeleton style={{ paddingTop: topBarHeight }} />
+          }
+        </div>
+      </DocumentTitle>
     )
   }
 }

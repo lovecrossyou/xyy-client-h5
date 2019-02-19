@@ -167,7 +167,7 @@ export default class Login extends React.Component {
           </div>
         </div>
         <p className={styles.desc}>
-          温馨提示：未注册饿了么帐号的手机号，登录时将自动注册，且代表您已同意<span>《用户服务协议》</span>
+          温馨提示：未注册鑫翼优帐号的手机号，登录时将自动注册，且代表您已同意<span>《用户服务协议》</span>
         </p>
         <button className={styles['login-btn']} onClick={this.handleLogin}>登录</button>
 
