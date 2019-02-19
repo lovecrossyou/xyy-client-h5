@@ -235,9 +235,7 @@ const BottomBar = ({ data }) => {
         </div>
         <div className={styles.buttom_container_m_ex}>已优惠¥6</div>
       </div>
-
       <div data={data} className="buttom_container_pay" >去支付</div>
-
     </div>
   )
 }
