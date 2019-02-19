@@ -12,9 +12,31 @@ import cls from 'classnames'
 import arrow_right from '../../assets/img/right_arrow.png'
 import ali_pay_icon from '../../assets/img/platform/ali_pay_icon.png';
 import wechat_pay_icon from '../../assets/img/platform/wechat_pay_icon.png';
+
+
 // import asyncLoad from 'components/async-loade'
 // import Loading from '../../components/loading';
 import Modal from '../../components/modal';
+
+const payinfo = {
+  shopId: 13,
+  userId: 2,
+  deliverAddressId: 1,
+  products: [
+    {
+      quantity: 2,
+      productId: 10,
+    },
+    {
+      quantity: 7,
+      productId: 13,
+    },
+    {
+      quantity: 1,
+      productId: 14,
+    },
+  ],
+}
 
 class PlaceOrder extends React.Component {
   componentDidMount() {
@@ -52,7 +74,7 @@ class PlaceOrder extends React.Component {
               />
           </div>
         </div>
-        <BottomBar />
+        <BottomBar data={JSON.stringify(payinfo)} />
         <PayChooseModal />
 
       </div>
@@ -202,7 +224,7 @@ const AddressChoose = ({ data, chooseAddAction }) => {
     </div>
   )
 }
-const BottomBar = () => {
+const BottomBar = ({ data }) => {
   return (
     <div className={styles.buttom_container}>
       <div className={styles.buttom_container_money}>
@@ -213,7 +235,7 @@ const BottomBar = () => {
         </div>
         <div className={styles.buttom_container_m_ex}>已优惠¥6</div>
       </div>
-      <div className="buttom_container_pay">去支付</div>
+      <div data={data} className="buttom_container_pay" >去支付</div>
     </div>
   )
 }
