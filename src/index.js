@@ -15,6 +15,8 @@ const requireAll = requireContext => requireContext.keys().map(requireContext)
 const reqSvg = require.context('./assets/svg', true, /\.svg$/)
 requireAll(reqSvg)
 
+window.g_store = store
+
 const render = Component => (
   ReactDOM.render((
     <AppContainer>

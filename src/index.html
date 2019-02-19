@@ -27,10 +27,12 @@
     }
 
     $(document).ready(function () {
+      isWxMini = window.__wxjs_environment === 'miniprogram' ;
       //银行卡列表
-      $('#root').on('click', '.wallet_bank', function () {
+      $('#root').on('click', '.buttom_container_pay', function () {
         console.log('银行卡列表');
-        wx.miniProgram.navigateTo({ url: '/pages/account/bindbank-list' });
+        wx.miniProgram.postMessage({ data: 'foo' })
+        wx.miniProgram.redirectTo({ url: '/pages/logs/logs' });
       });
     })
   </script>
