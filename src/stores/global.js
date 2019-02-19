@@ -2,7 +2,7 @@
 const UPDATE = 'GLOBAL_UPDATE'
 
 const initState = {
-  isLogin: false,
+  isLogin: true,
   userInfo: {},
 }
 

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import cls from 'classnames'
+import qs from 'query-string'
 import Toast from 'components/toast'
 import Scroll from 'components/scroll'
 import { getImageUrl } from 'utils/utils'
@@ -23,7 +24,10 @@ export default class OrderDetail extends React.Component {
   }
 
   initPage = async () => {
-    const { state } = this.props.location
+    const query = qs.parse(this.props.location.search) || {}
+    console.log(`query=========${JSON.stringify(query)}`)
+    const state = { id: query.id }
+    console.log(`state=========${JSON.stringify(state)}`)
     try {
       const [snapshot, desc] = await Promise.all([
         getOrderSnapshot(state),
@@ -49,6 +53,7 @@ export default class OrderDetail extends React.Component {
         <NavBar
           title="订单详情"
           iconLeft="#back"
+          backtoWechat={true}
           leftClick={() => this.props.history.goBack()} />
         <Scroll className={styles.scroll} dataSource={food}>
           <div className={styles.content}>

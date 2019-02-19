@@ -34,11 +34,16 @@ export default class NavBar extends React.PureComponent {
       rightClick,
       title,
       className,
+      backtoWechat,
     } = this.props
     return (
       <div className={cls(styles.nav, className)}>
         {
-          iconLeft ? (
+          iconLeft && backtoWechat ? (
+            <div className="navbackWechat" onClick={leftClick}>
+              <SvgIcon name={iconLeft} />
+            </div>
+          ) : iconLeft ? (
             <div className={styles.icon} onClick={leftClick}>
               <SvgIcon name={iconLeft} />
             </div>

@@ -4,7 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import DocumentTitle from 'react-document-title';
-
+import qs from 'query-string'
 import { fetchOrderList } from 'stores/order'
 import Scroll from 'components/scroll'
 // import NavBar from '../common-components/nav-bar'
@@ -13,6 +13,7 @@ import OrderRow from '../common-components/order-list-row'
 import AuthErr from '../common-components/auth-err'
 import RowSk from '../common-components/skeleton/row'
 import styles from './index.less'
+import NavBar from '../common-components/nav-bar';
 
 const mapStateToProps = ({ globalState, order }) => ({
   isLogin: globalState.isLogin,
@@ -54,10 +55,7 @@ export default class Order extends React.PureComponent {
 
   rowClick = (id) => {
     console.log(`id===========>${id}`)
-    this.props.history.push({
-      pathname: '/order-detail',
-      state: { id },
-    })
+    this.props.history.push(`/order-detail?id=${id}`)
   }
 
   render() {
@@ -74,15 +72,19 @@ export default class Order extends React.PureComponent {
       pullingDown: this.handlePullingDown,
       pullingUp: this.handlePullingUp,
     }
+    const query = qs.parse(this.props.location.search) || {}
+    const isHiddenNav = query.hiddenNav === 'hidden';
 
     return (
       <DocumentTitle title="订单" >
         <div className={styles.order}>
-          {/* <NavBar
-            className={styles.nav}
-            title="订单"
-            iconLeft="#back"
-            leftClick={() => this.props.history.goBack()} /> */}
+          {
+            isHiddenNav ? null : <NavBar
+              className={styles.nav}
+              title="订单"
+              iconLeft="#back"
+              leftClick={() => this.props.history.goBack()} />
+          }
           {
             isLogin ? (
               <Scroll {...scrollProps} ref={c => this.scroll = c}>

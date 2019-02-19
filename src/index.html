@@ -29,15 +29,22 @@
     }
     $(document).ready(function () {
       isWxMini = window.__wxjs_environment === 'miniprogram' ;
-      //银行卡列表
+
       $('#root').on('click', '.buttom_container_pay', function () {
         var data = $(this).attr('data');
-        console.log('银行卡列表', JSON.parse(data));
+        console.log('支付', JSON.parse(data));
         wx.miniProgram.postMessage({data:JSON.parse(data)});
         wx.miniProgram.redirectTo({
           url: '/pages/index/pay?xxx=123'
         });
       });
+      $('#root').on('click', '.navbackWechat', function () {
+        console.log('返回');
+        wx.miniProgram.reLaunch({
+          url: '/pages/index/index'
+        });
+      });
+
     });
   </script>
 </body>
