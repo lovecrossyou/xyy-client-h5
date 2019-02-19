@@ -9,6 +9,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import DocumentTitle from 'react-document-title';
 
 import SvgIcon from 'components/icon-svg'
 import Scroll from 'components/scroll'
@@ -16,7 +17,7 @@ import withTabBar from '../common-components/tab-bar'
 
 import styles from './index.less';
 import { shoppingCartUpdate } from '../../stores/shopping-cart'
-import NavBar from '../common-components/nav-bar'
+// import NavBar from '../common-components/nav-bar'
 
 const mapStateToPros = ({ shoppingCart }) => {
   return {
@@ -90,6 +91,7 @@ export default class ShoppingCart extends React.Component {
     return carts.filter(cart => cart.id !== undefined);
   }
   render() {
+    // eslint-disable-next-line no-unused-vars
     const { history, cart } = this.props
     const carts = this.split_cart_group(cart)
     console.log('carts #', carts);
@@ -100,17 +102,19 @@ export default class ShoppingCart extends React.Component {
       pullingUp: this.props.shoppingCartUpdate,
     }
     return (
-      <div className={styles.shoppingcart}>
-        <NavBar
-          title="购物车"
-          iconLeft="#back"
-          leftClick={() => history.goBack()} />
-        <Scroll {...scrollProps}>
-          {
-            carts.map((d, index) => <Cart cart={d} key={`${index}#`} />)
-          }
-        </Scroll>
-      </div>
+      <DocumentTitle title="购物车" >
+        <div className={styles.shoppingcart}>
+          {/* <NavBar
+            title="购物车"
+            iconLeft="#back"
+            leftClick={() => history.goBack()} /> */}
+          <Scroll {...scrollProps}>
+            {
+              carts.map((d, index) => <Cart cart={d} key={`${index}#`} />)
+            }
+          </Scroll>
+        </div>
+      </DocumentTitle>
     );
   }
 }
