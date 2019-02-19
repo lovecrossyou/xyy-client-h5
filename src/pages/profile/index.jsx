@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import cls from 'classnames'
 import SvgIcon from 'components/icon-svg'
 import { formatPhone, getImageUrl } from 'utils/utils'
-import NavBar from '../common-components/nav-bar'
+// import NavBar from '../common-components/nav-bar'
 // import withTabBar from '../common-components/tab-bar'
 import styles from './index.less'
 
@@ -50,10 +50,10 @@ export default class Profile extends React.Component {
 
     return (
       <div className={styles.root}>
-        <NavBar
+        {/* <NavBar
           title="我"
           iconLeft="#back"
-          leftClick={() => this.props.history.goBack()} />
+          leftClick={() => this.props.history.goBack()} /> */}
 
         <div className={styles['profile-info']} onClick={!isLogin ? () => changePage('/login') : goDetail}>
           <div className={styles.avatar}>
@@ -73,7 +73,7 @@ export default class Profile extends React.Component {
               <SvgIcon name="#iphone" className={styles.icon} />
               <span>
                 {
-                  !isLogin ? '登陆后可享受更多特权' : formatPhone(mobile)
+                  !isLogin ? '登陆后可享受更多特权' : formatPhone(mobile || '')
                 }
               </span>
             </p>
