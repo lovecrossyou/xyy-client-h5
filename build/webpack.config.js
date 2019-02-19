@@ -9,7 +9,7 @@ const baseConfig = require('./webpack.config.base')
 const jsonStringify = v => JSON.stringify(v)
 const isDev = process.env.NODE_ENV === 'development'
 const devServer = {
-  host: '127.0.0.1',
+  host: '0.0.0.0',
   port: '8888',
   hot: true,
   historyApiFallback: true,
