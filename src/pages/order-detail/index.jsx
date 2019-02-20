@@ -172,8 +172,8 @@ const renderer = ({
 }) => {
   if (completed) {
     // Render a completed state
-    return <div> 支付超时 </div>;
-  } return <span>{minutes}分钟{seconds}秒</span>;
+    return <div> 重新下单 </div>;
+  } return <span>去支付还剩({minutes}分钟{seconds}秒)</span>;
 };
 class OrderHeader extends Component {
   render() {
@@ -189,7 +189,7 @@ class OrderHeader extends Component {
           <div className={styles.cancel_left_btn}>取消订单</div>
           <div className={styles.toPay_btn}>
             <Countdown
-              date={Date.now() + 4000}
+              date={Date.now() + 90000}
               renderer={renderer}
               onComplete={() => console.log('倒计时结束')} />
           </div>
