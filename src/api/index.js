@@ -52,6 +52,10 @@ export const getShopInfo = (params) => { return HttpUtils.getH5(`/client/shop/sh
 // export const getShopRatings = (params) => { return HttpUtils.get('/elm/restaurant_ratings', params) }
 export const getShopRatings = (params) => { return HttpUtils.getH5('/client/shop/comments', params) }
 export const postConfirmOrder = (params) => { return HttpUtils.postH5('/client/shop/cartClient', params) }
+// 创建店铺订单
+export const postshopOrderCreate = (params) => { return HttpUtils.postH5('/client/shopOrder/create', params) }
+// 店铺订单 确认支付
+export const postkeplerPayConfirm = (params) => { return HttpUtils.postH5('/client/keplerPay/confirm', params) }
 
 export const getShopFood = (params) => { return HttpUtils.get('/elm/restaurant_menu', params) }
 export const getRatingTags = (params) => { return HttpUtils.get('/elm/rating_tags', params) }
