@@ -1,6 +1,8 @@
+/* eslint-disable react/no-multi-comp */
 /* eslint-disable no-script-url */
 
-import React from 'react'
+import React, { Component } from 'react'
+import Countdown from 'react-countdown-now';
 import cls from 'classnames'
 import qs from 'query-string'
 import Toast from 'components/toast'
@@ -9,8 +11,16 @@ import { getImageUrl } from 'utils/utils'
 import NavBar from '../common-components/nav-bar'
 import { getOrderSnapshot, getOrderDesc } from '../../api'
 import styles from './index.less'
+import arrow_left_black from '../../assets/img/order/arrow_left_black.png'
 
-export default class OrderDetail extends React.Component {
+
+// const cb = () => {
+//   console.log('expired callback')
+// }
+
+// const OPTIONS = { endDate: '2019-03-09 10:55', prefix: 'until my birthday!', cb }
+
+export default class OrderDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -54,8 +64,9 @@ export default class OrderDetail extends React.Component {
           title="订单详情"
           iconLeft="#back"
           backtoWechat={true}
-          leftClick={() => this.props.history.goBack()} />
+          leftClick={() => console.log} />
         <Scroll className={styles.scroll} dataSource={food}>
+          <OrderHeader />
           <div className={styles.content}>
 
             <div className={styles.item}>
@@ -151,5 +162,40 @@ export default class OrderDetail extends React.Component {
         </Scroll>
       </div>
     )
+  }
+}
+const renderer = ({
+  // hours,
+  minutes,
+  seconds,
+  completed,
+}) => {
+  if (completed) {
+    // Render a completed state
+    return <div> 支付超时 </div>;
+  } return <span>{minutes}分钟{seconds}秒</span>;
+};
+class OrderHeader extends Component {
+  render() {
+    return (
+      <div className={styles.orderdetail_header}>
+        <img className={styles.header_img} src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1998933028,4161933866&fm=173&app=25&f=JPEG?w=218&h=146&s=1ED7885E9CFB1E9A18839EFD0300401D" />
+        <div className={styles.h_payStatus_c}>
+          <div className={styles.h_payStatus}>等待支付</div>
+          <img src={arrow_left_black} className={styles.h_pay_arrow} />
+        </div>
+        <div className={styles.h_orderDesc}>逾期未支付，订单将自动取消</div>
+        <div className={styles.orderBtn_c}>
+          <div className={styles.cancel_left_btn}>取消订单</div>
+          <div className={styles.toPay_btn}>
+            <Countdown
+              date={Date.now() + 4000}
+              renderer={renderer}
+              onComplete={() => console.log('倒计时结束')} />
+          </div>
+        </div>
+
+      </div>
+    );
   }
 }
