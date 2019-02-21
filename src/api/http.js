@@ -9,7 +9,7 @@ const instance = axios.create({
 })
 
 const instanceH5 = axios.create({
-  baseURL: '/h5',
+  baseURL: '/client',
   withCredentials: true, // 跨域类型时是否在请求中协带cookie
 })
 
