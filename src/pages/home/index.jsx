@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 
 import React from 'react'
 import ReactDom from 'react-dom'
@@ -11,6 +12,7 @@ import Slide from 'components/slide'
 import Scroll from 'components/scroll'
 import Toast from 'components/toast'
 import { homeUpdate, homeInit, homeList } from '../../stores/home'
+import { globalUpdate } from '../../stores/global'
 // import withTabBar from '../common-components/tab-bar'
 import TitleBar from '../common-components/title-bar'
 import ShopListRow from '../common-components/shop-list-row'
@@ -29,6 +31,7 @@ const mapActionsToProps = dispatch => bindActionCreators({
   homeUpdate,
   homeInit,
   homeList,
+  globalUpdate,
 }, dispatch)
 
 @connect(

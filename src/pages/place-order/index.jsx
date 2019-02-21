@@ -55,7 +55,7 @@ class PlaceOrder extends React.Component {
           leftClick={() => this.props.history.goBack()} />
         <div className={styles.content}>
           <AddressChoose data={this.props.address} chooseAddAction={() => history.push('/address?choose=1')} />
-          <ArriveAndPay title="送达时间" value="尽快送达(15:10送达)" />
+          <ArriveAndPay title="送达时间" value="尽快送达" />
           <ArriveAndPay title="支付方式" value="在线支付" />
           <WaterStoreInfo productItemList={productItemList} />
           <div className={styles.bottom_white}>

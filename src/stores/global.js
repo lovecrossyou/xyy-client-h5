@@ -4,6 +4,7 @@ const UPDATE = 'GLOBAL_UPDATE'
 const initState = {
   isLogin: false,
   userInfo: {},
+  platform: '',
 }
 
 export const globalState = (state = initState, action) => {
