@@ -9,6 +9,8 @@ import { chooseTicket, getConfirmOrderInfo } from '../../stores/orderConfirm'
 import NavBar from '../common-components/nav-bar'
 import styles from './index.less'
 import cls from 'classnames'
+import qs from 'query-string'
+import Toast from 'components/toast'
 import arrow_right from '../../assets/img/right_arrow.png'
 import ali_pay_icon from '../../assets/img/platform/ali_pay_icon.png';
 import wechat_pay_icon from '../../assets/img/platform/wechat_pay_icon.png';
@@ -17,7 +19,10 @@ import wechat_pay_icon from '../../assets/img/platform/wechat_pay_icon.png';
 // import asyncLoad from 'components/async-loade'
 // import Loading from '../../components/loading';
 import Modal from '../../components/modal';
-
+import Scroll from '../../components/scroll';
+import { postkeplerPayConfirm } from '../../api';
+// postkeplerPayConfirm
+// postshopOrderCreate
 const payinfo = {
   shopId: 13,
   userId: 2,
@@ -41,8 +46,45 @@ const payinfo = {
 class PlaceOrder extends React.Component {
   componentDidMount() {
     this.props.getConfirmOrderInfo(() => {
-          // eslint-disable-line
+      // eslint-disable-line
     })
+  }
+  toPayAction = async () => {
+    const query = qs.parse(this.props.location.search) || {}
+    console.log(query)
+    // const createParams = {
+    //   shopId: 13,
+    //   userId: 2,
+    //   deliverAddressId: 1,
+    //   products: [
+    //     {
+    //       quantity: 2,
+    //       productId: 10,
+    //     },
+    //     {
+    //       quantity: 7,
+    //       productId: 13,
+    //     },
+    //     {
+    //       quantity: 1,
+    //       productId: 14,
+    //     },
+    //   ],
+    // }
+    const confirmParams = {
+      openId: 'oLtGG5N9Q6MudlWkU1O4fVavNQGg',
+      payChannel: 'WeixinMiniProgramPay',
+      payOrderNo: '20190213191419096316',
+    }
+    try {
+      // const orderInfo = await postshopOrderCreate(createParams)
+      const confirmRes = await postkeplerPayConfirm(confirmParams)
+      console.log(`confirmRes====${JSON.stringify(confirmRes)}`)
+      const id = '2104305524043915418'
+      this.props.history.push(`/order-detail?id=${id}`)
+    } catch ({ err }) {
+      Toast.info(err)
+    }
   }
   render() {
     const { history, info } = this.props;
@@ -53,28 +95,30 @@ class PlaceOrder extends React.Component {
           title="下单"
           iconLeft="#back"
           leftClick={() => this.props.history.goBack()} />
-        <div className={styles.content}>
-          <AddressChoose data={this.props.address} chooseAddAction={() => history.push('/address?choose=1')} />
-          <ArriveAndPay title="送达时间" value="尽快送达(15:10送达)" />
-          <ArriveAndPay title="支付方式" value="在线支付" />
-          <WaterStoreInfo productItemList={productItemList} />
-          <div className={styles.bottom_white}>
-            <OrderInfoItem_action
-              name="使用优惠卷"
-              value={this.props.ticket.money}
-              callBack={() => history.push('/tickets')} />
-            <OrderInfoItem_action name="立减优惠" value="-¥6" hideArrow={true} orderInfo_item_right_v_style={styles.orderInfo_color_red} />
-            <div style={{ height: '30px' }} />
-            <OrderInfoItem_action
-              name="订单备注"
-              value={this.props.remark}
-              orderInfo_item_right_v_style={styles.orderInfo_color_gray9}
-              orderInfo_item_left_style={styles.orderInfo_color_gray2e}
-              callBack={() => history.push('/orderRemark')}
+        <Scroll className={styles.confirm_scroll} dataSource={this.props.info} >
+          <div className={styles.content}>
+            <AddressChoose data={this.props.address} chooseAddAction={() => history.push('/address?choose=1')} />
+            <ArriveAndPay title="送达时间" value="尽快送达(15:10送达)" />
+            <ArriveAndPay title="支付方式" value="在线支付" />
+            <WaterStoreInfo productItemList={productItemList} />
+            <div className={styles.bottom_white}>
+              <OrderInfoItem_action
+                name="使用优惠卷"
+                value={this.props.ticket.money}
+                callBack={() => history.push('/tickets')} />
+              <OrderInfoItem_action name="立减优惠" value="-¥6" hideArrow={true} orderInfo_item_right_v_style={styles.orderInfo_color_red} />
+              <div style={{ height: '30px' }} />
+              <OrderInfoItem_action
+                name="订单备注"
+                value={this.props.remark}
+                orderInfo_item_right_v_style={styles.orderInfo_color_gray9}
+                orderInfo_item_left_style={styles.orderInfo_color_gray2e}
+                callBack={() => history.push('/orderRemark')}
               />
+            </div>
           </div>
-        </div>
-        <BottomBar data={JSON.stringify(payinfo)} />
+        </Scroll>
+        <BottomBar data={JSON.stringify(payinfo)} toPay={() => { this.toPayAction() }} />
         <PayChooseModal />
 
       </div>
@@ -94,7 +138,7 @@ const pays = [
   { name: '支付宝', icon: ali_pay_icon },
 ]
 class PayChooseModal extends Component {
-  state=({
+  state = ({
     visible: false,
   })
 
@@ -198,7 +242,7 @@ const WaterStoreItem = ({ data }) => {
         <div className={styles.water_store_item_title}>{shopProduct.headName}</div>
       </div>
       <div className={styles.water_store_item_count_c}>
-        <div className={styles.water_store_item_count}>{ `x${shopProduct.spec}`}</div>
+        <div className={styles.water_store_item_count}>{`x${shopProduct.spec}`}</div>
         <div className={styles.water_store_item_money}>{`¥ ${shopProduct.price / 100}`}</div>
       </div>
     </div>
@@ -224,18 +268,18 @@ const AddressChoose = ({ data, chooseAddAction }) => {
     </div>
   )
 }
-const BottomBar = ({ data }) => {
+const BottomBar = ({ data, toPay }) => {
   return (
     <div className={styles.buttom_container}>
       <div className={styles.buttom_container_money}>
         <div className={styles.buttom_container_m_title}>总额：</div>
         <div className={styles.buttom_container_m_mark}>¥</div>
         <div className={styles.buttom_container_m_value}>
-          { '20.00' }
+          {'20.00'}
         </div>
         <div className={styles.buttom_container_m_ex}>已优惠¥6</div>
       </div>
-      <div data={data} className="buttom_container_pay" >去支付</div>
+      <div data={data} className="buttom_container_pay" onClick={() => toPay()} >去支付</div>
     </div>
   )
 }

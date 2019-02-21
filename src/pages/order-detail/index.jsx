@@ -64,7 +64,7 @@ export default class OrderDetail extends Component {
           title="订单详情"
           iconLeft="#back"
           backtoWechat={true}
-          leftClick={() => console.log} />
+          leftClick={() => this.props.history.goBack()} />
         <Scroll className={styles.scroll} dataSource={food}>
           <OrderHeader />
           <div className={styles.content}>

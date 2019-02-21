@@ -29,249 +29,253 @@
   position: fixed;
   .position-full;
   z-index: 1;
-  // background-color: @fill-body-darken;
-  // background-image: linear-gradient(180deg, @primary-color,#D4E0EC, #fff);
-  // background: linear-gradient(to bottom, @primary-color, white);
-  background: linear-gradient(to bottom, @primary-color 50%, white 80%, white);
-  .content {
-    text-align: center;
-    img {
-      width: 300px;
-      height: 300px;
-      content: none !important;
-    }
-    p {
+  .confirm_scroll{
+    position: absolute;
+    top: @bar-height;
+    bottom: 88px;
+    z-index: 1;
+    background: linear-gradient(to bottom, @primary-color 50%, white 80%, white);
+    .content {
       text-align: center;
-      font-weight: @font-weight-small;
-      color: @color-title;
-      margin: 20px;
-    }
-    .address_choose{
-      .row_center;
-      padding: 24px;
-      box-sizing: border-box;
-      .address_choose_arrow{
-        width: 14px;
-        height: 28px;
+      img {
+        width: 300px;
+        height: 300px;
+        content: none !important;
       }
-      .address_choose_left{
-        display: flex;
-        flex-direction: column;
-        .address_choose_mark_c{
-          .row_center;
-          .address_choose_mark_t{
-            font-size:26px;
-            font-family:PingFangSC-Regular;
-            font-weight:400;
-            color:rgba(255,255,255,1);
-          }
-          .address_choose_mark{
-            height:30px;
-            background:rgba(132,172,212,1);
-            border-radius:4px;
-            border:1px solid rgba(255,255,255,1);
-            font-size:20px;
-            font-family:PingFangSC-Regular;
-            font-weight:400;
-            color:rgba(255,255,255,1);
-            line-height:30px;
-            text-align: center;
-            padding: 0 12px;
-          }
-        }
-        .address_choose_detail{
-          width:460px;
-          font-size:28px;
-          font-family:PingFangSC-Medium;
-          font-weight:500;
-          color:rgba(255,255,255,1);
-          margin-top: 10px;
-          text-align: left;
-        }
-        .address_people{
-          .row_center;
-          margin-top: 14px;
-          .address_p_name{
-            height:34px;
-            font-size:24px;
-            font-family:PingFangSC-Regular;
-            font-weight:400;
-            color:rgba(255,255,255,1);
-            line-height:34px;
-          }
-          .address_p_phone{
-            height:34px;
-            font-size:24px;
-            font-family:PingFangSC-Regular;
-            font-weight:400;
-            color:rgba(255,255,255,1);
-            line-height:34px;
-            margin-left: 20px;
-          }
-        }
-
+      p {
+        text-align: center;
+        font-weight: @font-weight-small;
+        color: @color-title;
+        margin: 20px;
       }
-      // background:rgba(255,255,255,1);
-    }
-    .arrive_pay_c{
-      .row_between;
-      margin: 0 24px;
-      padding: 20px 24px;
-      box-sizing: border-box;
-      background-color: white;
-      .arrive_pay_c_title{
-        height:40px;
-        font-size:28px;
-        font-family:PingFangSC-Medium;
-        font-weight:500;
-        color:rgba(51,51,51,1);
-        line-height:40px;
-      }
-      .arrive_pay_c_value{
-        height:40px;
-        font-size:28px;
-        font-family:PingFangSC-Medium;
-        font-weight:500;
-        color:rgba(126,168,210,1);
-        line-height:40px;
-      }
-    }
-    .water_store_info{
-      margin: 20px 24px 0 24px;
-      padding: 24px;
-      box-sizing: border-box;
-      background-color: white;
-      .water_store_h_t{
-        width:100%;
-        height: 80px;
-        text-align: left;
-        font-size:28px;
-        font-family:PingFangSC-Regular;
-        font-weight:400;
-        line-height: 80px;
-        color:#333333;
-        border-bottom: 1px #EDEBEB solid;
-      }
-      .water_store_item{
-        .row_between;
-        width: 100%;
-        padding-top: 20px;
+      .address_choose{
+        .row_center;
+        padding: 24px;
         box-sizing: border-box;
-        .water_store_item_title_c{
-          .row_center;
-          flex: 1;
-          .water_store_item_img{
-            width: 88px;
-            height: 88px;
-          }
-          .water_store_item_title{
-            margin-left: 20px;
-            font-size:24px;
-            font-family:PingFangSC-Regular;
-            font-weight:400;
-            color:rgba(51,51,51,1);
-          }
+        .address_choose_arrow{
+          width: 14px;
+          height: 28px;
         }
-        .water_store_item_count_c{
-          .row_between;
-          flex: 1;
-          .water_store_item_count{
-            margin-left: 20px;
-            font-size:24px;
-            font-family:PingFangSC-Regular;
-            font-weight:400;
-            color:rgba(51,51,51,1);
+        .address_choose_left{
+          display: flex;
+          flex-direction: column;
+          .address_choose_mark_c{
+            .row_center;
+            .address_choose_mark_t{
+              font-size:26px;
+              font-family:PingFangSC-Regular;
+              font-weight:400;
+              color:rgba(255,255,255,1);
+            }
+            .address_choose_mark{
+              height:30px;
+              background:rgba(132,172,212,1);
+              border-radius:4px;
+              border:1px solid rgba(255,255,255,1);
+              font-size:20px;
+              font-family:PingFangSC-Regular;
+              font-weight:400;
+              color:rgba(255,255,255,1);
+              line-height:30px;
+              text-align: center;
+              padding: 0 12px;
+            }
           }
-          .water_store_item_money{
-            font-size:24px;
-            font-family:PingFangSC-Regular;
-            font-weight:400;
-            color:rgba(51,51,51,1);
+          .address_choose_detail{
+            width:460px;
+            font-size:28px;
+            font-family:PingFangSC-Medium;
+            font-weight:500;
+            color:rgba(255,255,255,1);
+            margin-top: 10px;
+            text-align: left;
+          }
+          .address_people{
+            .row_center;
+            margin-top: 14px;
+            .address_p_name{
+              height:34px;
+              font-size:24px;
+              font-family:PingFangSC-Regular;
+              font-weight:400;
+              color:rgba(255,255,255,1);
+              line-height:34px;
+            }
+            .address_p_phone{
+              height:34px;
+              font-size:24px;
+              font-family:PingFangSC-Regular;
+              font-weight:400;
+              color:rgba(255,255,255,1);
+              line-height:34px;
+              margin-left: 20px;
+            }
           }
 
         }
-
+        // background:rgba(255,255,255,1);
       }
-      .orderInfo_deliveryFee{
-        .display_b;
-        width: 100%;
-        line-height: 80px;
-        margin-bottom: 10px;
-        .orderInfo_deliveryFee_name{
+      .arrive_pay_c{
+        .row_between;
+        margin: 0 24px;
+        padding: 20px 24px;
+        box-sizing: border-box;
+        background-color: white;
+        .arrive_pay_c_title{
+          height:40px;
           font-size:28px;
-          font-family:PingFangSC-Regular;
-          font-weight:400;
-          color:rgba(102,102,102,1);
-          line-height:80px;
-        }
-        .orderInfo_deliveryFee_m{
-          font-size:32px;
           font-family:PingFangSC-Medium;
           font-weight:500;
           color:rgba(51,51,51,1);
-          line-height: 32px;
-          align-self: flex-end;
-          margin-bottom:15px;
+          line-height:40px;
         }
-    }
-    .orderInfo_line{
-      width: 100%;
-      height:2px;
-      background-color: #989898;
-    }
-    .orderInfo_totoal{
-      .row_center;
-      width: 100%;
-      height: 80px;
-      justify-content: flex-end;
-      .orderInfo_totoal_t{
-        font-size:26px;
-        font-family:PingFangSC-Regular;
-        font-weight:400;
-        color:rgba(51,51,51,1);
+        .arrive_pay_c_value{
+          height:40px;
+          font-size:28px;
+          font-family:PingFangSC-Medium;
+          font-weight:500;
+          color:rgba(126,168,210,1);
+          line-height:40px;
+        }
       }
-      .orderInfo_totoal_m{
-        font-size:36px;
-        font-family:PingFangSC-Medium;
-        font-weight:500;
-        color:rgba(51,51,51,1);
-      }
-
-    }
-    }
-    .bottom_white{
-      background-color: white;
-      padding: 0 48px;
-      .orderInfoItem_action{
-        .row_between;
-        padding: 22px 24px 0 24px;
+      .water_store_info{
+        margin: 20px 24px 0 24px;
+        padding: 24px;
         box-sizing: border-box;
-        width: 100%;
-        .orderInfo_item_left{
-          font-size:24px;
+        background-color: white;
+        .water_store_h_t{
+          width:100%;
+          height: 80px;
+          text-align: left;
+          font-size:28px;
           font-family:PingFangSC-Regular;
           font-weight:400;
-          color:#7CA7D2;
-          line-height: 24px;
+          line-height: 80px;
+          color:#333333;
+          border-bottom: 1px #EDEBEB solid;
         }
-        .orderInfo_item_right{
-          .row_center;
-          .orderInfo_item_right_value{
+        .water_store_item{
+          .row_between;
+          width: 100%;
+          padding-top: 20px;
+          box-sizing: border-box;
+          .water_store_item_title_c{
+            .row_center;
+            flex: 1;
+            .water_store_item_img{
+              width: 88px;
+              height: 88px;
+            }
+            .water_store_item_title{
+              margin-left: 20px;
+              font-size:24px;
+              font-family:PingFangSC-Regular;
+              font-weight:400;
+              color:rgba(51,51,51,1);
+            }
+          }
+          .water_store_item_count_c{
+            .row_between;
+            flex: 1;
+            .water_store_item_count{
+              margin-left: 20px;
+              font-size:24px;
+              font-family:PingFangSC-Regular;
+              font-weight:400;
+              color:rgba(51,51,51,1);
+            }
+            .water_store_item_money{
+              font-size:24px;
+              font-family:PingFangSC-Regular;
+              font-weight:400;
+              color:rgba(51,51,51,1);
+            }
+
+          }
+
+        }
+        .orderInfo_deliveryFee{
+          .display_b;
+          width: 100%;
+          line-height: 80px;
+          margin-bottom: 10px;
+          .orderInfo_deliveryFee_name{
+            font-size:28px;
+            font-family:PingFangSC-Regular;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:80px;
+          }
+          .orderInfo_deliveryFee_m{
+            font-size:32px;
+            font-family:PingFangSC-Medium;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            line-height: 32px;
+            align-self: flex-end;
+            margin-bottom:15px;
+          }
+      }
+      .orderInfo_line{
+        width: 100%;
+        height:2px;
+        background-color: #989898;
+      }
+      .orderInfo_totoal{
+        .row_center;
+        width: 100%;
+        height: 80px;
+        justify-content: flex-end;
+        .orderInfo_totoal_t{
+          font-size:26px;
+          font-family:PingFangSC-Regular;
+          font-weight:400;
+          color:rgba(51,51,51,1);
+        }
+        .orderInfo_totoal_m{
+          font-size:36px;
+          font-family:PingFangSC-Medium;
+          font-weight:500;
+          color:rgba(51,51,51,1);
+        }
+
+      }
+      }
+      .bottom_white{
+        background-color: white;
+        padding: 0 48px;
+        .orderInfoItem_action{
+          .row_between;
+          padding: 22px 24px 0 24px;
+          box-sizing: border-box;
+          width: 100%;
+          .orderInfo_item_left{
             font-size:24px;
             font-family:PingFangSC-Regular;
             font-weight:400;
-            color:#D4660B;
-            margin-right: 10px;
+            color:#7CA7D2;
             line-height: 24px;
           }
-          .address_choose_arrow{
-            width: 10px;
-            height: 18px;
+          .orderInfo_item_right{
+            .row_center;
+            .orderInfo_item_right_value{
+              font-size:24px;
+              font-family:PingFangSC-Regular;
+              font-weight:400;
+              color:#D4660B;
+              margin-right: 10px;
+              line-height: 24px;
             }
-          }
+            .address_choose_arrow{
+              width: 10px;
+              height: 18px;
+              }
+            }
+        }
       }
     }
   }
+
 }
 .orderInfo_item_right_v_style{
   color: #D19B5C !important;

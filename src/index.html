@@ -42,37 +42,36 @@
       });
       $('#root').on('click', '.navbackWechat', function () {
         console.log('返回');
-        let params = {
-          "openId": "oLtGG5N9Q6MudlWkU1O4fVavNQGg",
-          "payChannel": "WeixinMiniProgramPay",
-          "payOrderNo": "20190213191419096316"
-        }
-        // $.post('/h5/client/keplerPay/confirm',JSON.stringify(params),function(res){
-        //     console.log(JSON.stringify(res));
+        // let params = {
+        //   "openId": "oLtGG5N9Q6MudlWkU1O4fVavNQGg",
+        //   "payChannel": "WeixinMiniProgramPay",
+        //   "payOrderNo": "20190213191419096316"
+        // }
+        // // $.post('/h5/client/keplerPay/confirm',JSON.stringify(params),function(res){
+        // //     console.log(JSON.stringify(res));
+        // // });
+        // var sendData = {
+        //   openId: "oLtGG5N9Q6MudlWkU1O4fVavNQGg",
+        //   payChannel: "WeixinMiniProgramPay",
+        //   payOrderNo: "20190213191419096316"
+        // };
+        // $.ajax({
+        //   url: "/h5/client/keplerPay/confirm",
+        //   type: 'post',
+        //   dataType: 'json',
+        //   contentType: "application/json",
+        //   async: true, //异步请求
+        //   cache: false,
+        //   data: JSON.stringify(sendData), //使用变量sendData
+        //   //执行成功的回调函数
+        //   success: function (data) {
+        //     console.log(JSON.stringify(data))
+        //   },
+        //   //执行失败或错误的回调函数
+        //   error: function (data) {
+        //     alert("认证失败");
+        //   }
         // });
-        var sendData = {
-          openId: "oLtGG5N9Q6MudlWkU1O4fVavNQGg",
-          payChannel: "WeixinMiniProgramPay",
-          payOrderNo: "20190213191419096316"
-        };
-        $.ajax({
-          url: "/h5/client/keplerPay/confirm",
-          type: 'post',
-          dataType: 'json',
-          contentType: "application/json",
-          async: true, //异步请求
-          cache: false,
-          data: JSON.stringify(sendData), //使用变量sendData
-          //执行成功的回调函数
-          success: function (data) {
-            console.log(JSON.stringify(data))
-          },
-          //执行失败或错误的回调函数
-          error: function (data) {
-            alert("认证失败");
-          }
-        });
-
         wx.miniProgram.reLaunch({
           url: '/pages/index/index'
         });
